@@ -1,4 +1,4 @@
-.titles{
+.title{
     font-family: var(--global-font);
     font-size: 2.5rem;
     font-weight: 500;
@@ -6,12 +6,12 @@
     position: relative;
 }
 
-.titles i {
+.title i {
     /*margin-left: 10px; /* Espacio entre el texto y el icono */
     color: var(--icons-color); /* Color del icono */
 }
 
-.titles:after {
+.title:after {
     content: '';
     display: block;
     width: 60px;

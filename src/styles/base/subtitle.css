@@ -1,8 +1,8 @@
-.subtitles{
+.subtitle{
     font-family: var(--global-font);
 }
 
-.subtitles:after {
+.subtitle:after {
     content: '';
     display: block;
     width: 20px;

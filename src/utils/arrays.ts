@@ -1,6 +1,10 @@
-import { ArrContainer } from '../interfaces/ArrContainer.js';
-import { ArrShippingOption } from '../interfaces/ArrShippingOption.js';
-import { globalInfo } from './constants.js';
+import { ArrContainer }         from '../interfaces/ArrContainer.js';
+import { ArrFeature }           from '../interfaces/ArrFeature.js';
+import { ArrInfoCardContent }   from '../interfaces/ArrInfoCardContent.js';
+import { ArrProduct }           from '../interfaces/ArrProduct.js';
+import { ArrShippingOption }    from '../interfaces/ArrShippingOption.js';
+import { ArrSocialMedia }       from '../interfaces/ArrSocialMedia.js';
+import { globalInfo }           from './constants.js';
 
 export const arrContainers: ArrContainer[] = [
     {
@@ -59,7 +63,7 @@ export const arrContainers: ArrContainer[] = [
     }
 ];
 
-export const arrProducts = [
+export const arrProducts: ArrProduct[] = [
     {
         id      : 'children',
         title   : 'Calzado Infantil',
@@ -140,7 +144,7 @@ export const arrProducts = [
     }
 ];
 
-export const arrFeatures = [
+export const arrFeatures: ArrFeature[] = [
     {
         icon        : 'bi bi-star-fill',
         title       : 'Calidad Premium',
@@ -158,7 +162,7 @@ export const arrFeatures = [
     }
 ];
 
-export const arrInfoCardContent = [
+export const arrInfoCardContent: ArrInfoCardContent[] = [
     {
         type    : 'Email',
         value   : globalInfo.email,
@@ -176,7 +180,7 @@ export const arrInfoCardContent = [
     }
 ];
 
-export const arrSocialMedia = [
+export const arrSocialMedia: ArrSocialMedia[] = [
     {
         name    : 'facebook',
         icon    : 'bi bi-facebook',
