@@ -1,0 +1,28 @@
+:root {
+    --btn-primary-color: #ed9b40;
+    --btn-secondary-color: rgb(248, 246, 233); 
+}
+
+.btn-primary {
+    background-color: var(--btn-secondary-color);
+    border-color: var(--btn-primary-color);
+    color: var(--btn-primary-color);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform 0.3s;
+}
+
+.btn-primary:hover, .btn-primary.active {
+    background-color: var(--btn-primary-color);
+    border-color: var(--btn-primary-color);
+    color: var(--btn-secondary-color);
+    transform: translateY(-5px);
+}
+
+button.nav-link.btn-primary.active {
+    background-color: var(--btn-primary-color) !important;
+    border-color: var(--btn-primary-color) !important;
+    color: var(--btn-secondary-color) !important;
+    transform: translateY(-5px);
+}

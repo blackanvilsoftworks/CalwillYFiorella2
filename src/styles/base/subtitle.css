@@ -1,0 +1,12 @@
+.subtitles{
+    font-family: var(--global-font);
+}
+
+.subtitles:after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 15px auto 0;
+}
