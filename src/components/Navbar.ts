@@ -1,6 +1,6 @@
-import { globalInfo }       from '../../utils/constants.js';
-import { arrContainers }    from '../../utils/arrays.js';
-import { ArrContainer }     from '../../interfaces/ArrContainer.js';
+import { globalInfo }       from '../utils/constants.js';
+import { arrContainers }    from '../utils/arrays.js';
+import { ArrContainer }     from '../interfaces/ArrContainer.js';
 
 export class Navbar {
     private element: HTMLElement;
