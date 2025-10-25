@@ -1,11 +1,6 @@
 export const createTitle = (title: string, icon: string): HTMLSpanElement => {
-    const titleSpan = document.createElement('span');
+    const titleSpan     = document.createElement('span');
     titleSpan.className = 'title';
-    titleSpan.innerHTML = `
-        <span class="title">
-            ${title}
-            <i class="${icon}"></i>
-        </span>
-    `;
+    titleSpan.innerHTML = `${title} <i class="${icon}"></i>`;
     return titleSpan;
 };

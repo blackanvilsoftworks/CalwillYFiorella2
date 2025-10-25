@@ -1,23 +1,23 @@
-import { globalInfo }       from '../utils/constants.js';
-import { arrContainers }    from '../utils/arrays.js';
-import { ArrContainer }     from '../interfaces/ArrContainer.js';
+import { globalInfo }       from '../../utils/constants.js';
+import { arrContainers }    from '../../utils/arrays.js';
+import { ArrContainer }     from '../../interfaces/ArrContainer.js';
 
 export class Navbar {
     private element: HTMLElement;
   
-    constructor() {
-        this.element = this.createNavbar();
+    constructor (id: string = 'navbar_container') {
+        this.element = this.createNavbar(id);
         // this.setupEventListeners();
     }
     
-    public getElement(): HTMLElement {
+    public getElement (): HTMLElement {
         return this.element ;
     }
 
-    private createNavbar(): HTMLElement {
+    private createNavbar (id:string): HTMLElement {
         const nav       = document.createElement('nav');
         nav.className   = 'navbar navbar-expand-md navbar-light m-0 p-0 fixed-top shadow';
-        nav.id          = 'navbar_container';
+        nav.id          = id;
         nav.innerHTML   = `
             <div class="container-fluid">
                 <a class="navbar-brand" href="#${nav.id}">
