@@ -9,14 +9,14 @@ import { globalInfo }           from './constants.js';
 export const arrContainers: ArrContainer[] = [
     {
         id          : 'navbar_container',
-        className   : '',
+        className   : 'navbar navbar-expand-md navbar-light m-0 p-0 fixed-top shadow',
         navbar      : '',
         title       : '',
         icon        : '',
     },
     {
         id          : 'hero_container',
-        className   : '',
+        className   : 'hero mt-5 px-3',
         navbar      : 'Inicio',
         title       : '',
         icon        : '',
@@ -30,7 +30,7 @@ export const arrContainers: ArrContainer[] = [
     },
     {
         id          : 'features_container',
-        className   : '',
+        className   : 'container mt-2 mt-sm-4 py-5',
         navbar      : 'Características',
         title       : '¿Por Qué Elegirnos?',
         icon        : 'bi bi-person-raised-hand',

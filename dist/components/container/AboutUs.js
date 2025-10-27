@@ -6,11 +6,7 @@ export class AboutUs extends Container {
         super(id, className);
         this.createHTML(title, icon);
     }
-    getElement() {
-        return this.getContainer();
-    }
     createHTML(title, icon) {
-        // const title2 = createTitle(title, icon)
         const html = `
             <div class="row justify-content-center">
                 <div class="col-10">

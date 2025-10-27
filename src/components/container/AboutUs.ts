@@ -12,12 +12,7 @@ export class AboutUs extends Container{
         this.createHTML(title, icon);
     }
 
-    public getElement (): HTMLDivElement {
-        return this.getContainer();
-    }
-
     private createHTML (title: string, icon: string): void {
-        // const title2 = createTitle(title, icon)
         const html = `
             <div class="row justify-content-center">
                 <div class="col-10">
