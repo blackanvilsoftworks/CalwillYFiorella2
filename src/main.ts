@@ -1,7 +1,7 @@
 import { Home } from './pages/Home.js';
-const main = document.getElementById('main') as HTMLDivElement;
+const body = document.getElementById('body') as HTMLBodyElement;
 
-main.appendChild(Home());
+body.appendChild(Home());
 
 
 

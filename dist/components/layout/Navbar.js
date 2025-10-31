@@ -1,15 +1,33 @@
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
-import { Container } from '../Container.js';
-export class Navbar extends Container {
+export class Navbar {
     constructor(id, className) {
-        super(id, className);
-        this.createHTML(id);
+        this.container = this.createElement(id, className);
     }
-    createHTML(id) {
-        const html = `
+    getContainer() {
+        try {
+            if (!this.container.innerHTML) {
+                throw new Error(`Element id:${this.container.id} has no innerHTML set.`);
+            }
+            return this.container;
+        }
+        catch (error) {
+            console.error(error);
+            return document.createElement('nav');
+        }
+    }
+    createElement(id, className) {
+        const nav = document.createElement('nav');
+        nav.id = id;
+        nav.className = className;
+        nav.innerHTML = this.createHTML();
+        return nav;
+    }
+    createHTML() {
+        var _a;
+        return `
             <div class="container-fluid">
-                <a class="navbar-brand" href="#${id}">
+                <a class="navbar-brand" href="#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}">
                     <img src="./assets/navbar-logo.png" alt="${globalInfo.name} Logo" height="40" class="d-inline-block align-text-top me-2">
                     <span class="ms-2 navbar-title">${globalInfo.name.toUpperCase()}</span>
                 </a>
@@ -20,7 +38,6 @@ export class Navbar extends Container {
                     ${this.createNavbarItems().outerHTML}
                 </div>
             </div>`;
-        this.setHTML(html);
     }
     createNavbarItems() {
         const ul = document.createElement('ul');

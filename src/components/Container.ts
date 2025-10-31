@@ -16,7 +16,7 @@ export class Container {
         } catch (error) {
             console.error(error);
             return document.createElement('div');
-        }        
+        }
     }
 
     public setHTML (html: string): void {

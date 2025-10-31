@@ -31,8 +31,7 @@ export class AboutUs extends Container{
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
+            </div>`;
         this.setHTML(html);
     }
 }

@@ -1,6 +1,6 @@
 import { Home } from './pages/Home.js';
-const main = document.getElementById('main');
-main.appendChild(Home());
+const body = document.getElementById('body');
+body.appendChild(Home());
 // // Importar con extensión .js
 // import { Home } from './pages/Home.js';
 // import { Navbar } from './components/navbar/Navbar.js';
