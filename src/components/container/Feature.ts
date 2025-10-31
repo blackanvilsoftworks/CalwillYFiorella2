@@ -1,7 +1,8 @@
-import { arrFeatures } from '../../utils/arrays.js';
-import { createTitle } from '../../utils/createTitle.js';
-import { Container } from '../Container.js';
-import { FeatureBoxContainer } from '../ui/FeatureBoxContainer.js';
+import { arrFeatures }          from '../../utils/arrays.js';
+import { createTitle }          from '../../utils/createTitle.js';
+
+import { Container }            from '../Container.js';
+import { FeatureBoxContainer }  from '../ui/FeatureBoxContainer.js';
 
 export class Feature extends Container {
     private featureBoxes: HTMLDivElement[] = [];

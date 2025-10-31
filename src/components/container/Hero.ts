@@ -1,4 +1,4 @@
-import { Container } from "../Container";
+import { Container } from "../Container.js";
 
 export class Hero extends Container {
     constructor(id: string, className: string) {

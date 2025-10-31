@@ -1,20 +1,15 @@
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
-export class Navbar {
-    constructor(id = 'navbar_container') {
-        this.element = this.createNavbar(id);
-        // this.setupEventListeners();
+import { Container } from '../Container.js';
+export class Navbar extends Container {
+    constructor(id, className) {
+        super(id, className);
+        this.createHTML(id);
     }
-    getElement() {
-        return this.element;
-    }
-    createNavbar(id) {
-        const nav = document.createElement('nav');
-        nav.className = 'navbar navbar-expand-md navbar-light m-0 p-0 fixed-top shadow';
-        nav.id = id;
-        nav.innerHTML = `
+    createHTML(id) {
+        const html = `
             <div class="container-fluid">
-                <a class="navbar-brand" href="#${nav.id}">
+                <a class="navbar-brand" href="#${id}">
                     <img src="./assets/navbar-logo.png" alt="${globalInfo.name} Logo" height="40" class="d-inline-block align-text-top me-2">
                     <span class="ms-2 navbar-title">${globalInfo.name.toUpperCase()}</span>
                 </a>
@@ -25,7 +20,7 @@ export class Navbar {
                     ${this.createNavbarItems().outerHTML}
                 </div>
             </div>`;
-        return nav;
+        this.setHTML(html);
     }
     createNavbarItems() {
         const ul = document.createElement('ul');

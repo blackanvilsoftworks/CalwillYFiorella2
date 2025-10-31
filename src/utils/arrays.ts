@@ -44,7 +44,7 @@ export const arrContainers: ArrContainer[] = [
     },
     {
         id          : 'shipping_container',
-        className   : '',
+        className   : 'cointainer pt-5 text-center',
         navbar      : 'Envíos',
         title       : 'Opciones de Envío',
         icon        : 'bi bi-rocket-takeoff',
