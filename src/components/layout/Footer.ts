@@ -50,7 +50,7 @@ export class Footer {
     private createSocialMediaButton () {
         return arrSocialMedia.map(media => { return `
             <div class="col-12 col-sm-6 mb-3">
-                <button type="button" class="btn btn-outline-${media.color} w-100" id="${media.name}-btn">
+                <button type="button" class="btn btn-outline-${media.color} w-100" id="btn_${media.name}">
                     <i class="${media.icon}"></i> ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}
                 </button>
             </div>`;
