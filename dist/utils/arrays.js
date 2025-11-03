@@ -30,7 +30,7 @@ export const arrContainers = [
     },
     {
         id: 'products_container',
-        className: '',
+        className: 'container py-3 py-sm-4 py-md-5 rounded-3',
         navbar: 'Productos',
         title: 'Nuestros Productos',
         icon: 'bi bi-cart',

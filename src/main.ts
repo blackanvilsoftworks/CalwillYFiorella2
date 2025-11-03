@@ -1,7 +1,8 @@
 import { Home } from './pages/Home.js';
+
 const body = document.getElementById('body') as HTMLBodyElement;
 
-body.appendChild(Home());
+body.prepend(Home());
 
 
 
