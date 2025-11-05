@@ -1,5 +1,9 @@
-import { arrSocialMedia } from './arrays.js';
-import { messageValidation, nameValidation, phoneNumberValidation } from './validations.js';
+import { arrSocialMedia } from '../../utils/arrays.js';
+import { 
+    messageValidation, 
+    nameValidation, 
+    phoneNumberValidation 
+} from '../../utils/validations.js';
 
 export const facebookBtnHandler = (): void => {
     const facebookItem = arrSocialMedia.find(item => item.name === 'facebook');
@@ -23,7 +27,13 @@ export const whatsappBtnHandler = (): void => {
     window.open(whatsappURL, '_blank');
 }
 
-export const formHandler = (e: Event, inputName: HTMLInputElement, inputPhoneNumber: HTMLInputElement, inputMessage: HTMLTextAreaElement): void => {
+export const formHandler = (
+    e               : Event,
+    contacForm      : HTMLFormElement,
+    inputName       : HTMLInputElement, 
+    inputPhoneNumber: HTMLInputElement, 
+    inputMessage    : HTMLTextAreaElement
+): void => {    
     e.preventDefault();
     
     const cleanedName           = nameValidation(inputName);
@@ -37,7 +47,6 @@ export const formHandler = (e: Event, inputName: HTMLInputElement, inputPhoneNum
     const whatsappLinkPhoneNumber = `https://wa.me/549${cleanedPhoneNumber}`;
     
     inputPhoneNumber.value = whatsappLinkPhoneNumber;
-    // const contacForm    = document.getElementById('contact_form')! as HTMLFormElement;
-    // contacForm.submit();
-    // contacForm.reset();
+    contacForm.submit();
+    contacForm.reset();
 }

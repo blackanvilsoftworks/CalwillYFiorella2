@@ -5,14 +5,7 @@ import {
     facebookBtnHandler,
     whatsappBtnHandler,
     formHandler
-} from './utils/eventListeners.js';
-
-// ===== VALIDACIONES =====
-// import { 
-//     nameValidation, 
-//     phoneNumberValidation, 
-//     messageValidation 
-// } from './utils/validations.js';
+} from './services/events/eventHandlers.js';
 
 // ===== MAIN =====
 const body = document.getElementById('body') as HTMLBodyElement;
@@ -32,7 +25,7 @@ const inputMessage      = document.getElementById('message')     ! as HTMLTextAr
 // ===== EVENT LISTENERS =====
 toFacebookBtn   .addEventListener('click'   , facebookBtnHandler);
 toWhatsappBtn   .addEventListener('click'   , whatsappBtnHandler);
-contacForm      .addEventListener('submit'  , (e: Event) => formHandler(e, inputName, inputPhoneNumber, inputMessage));
+contacForm      .addEventListener('submit'  , (e: Event) => formHandler(e, contacForm, inputName, inputPhoneNumber, inputMessage));
 
 
 // // Importar con extensión .js

@@ -1,12 +1,6 @@
 import { Home } from './pages/Home.js';
 // ===== EVENT LISTENERS =====
-import { facebookBtnHandler, whatsappBtnHandler, formHandler } from './utils/eventListeners.js';
-// ===== VALIDACIONES =====
-// import { 
-//     nameValidation, 
-//     phoneNumberValidation, 
-//     messageValidation 
-// } from './utils/validations.js';
+import { facebookBtnHandler, whatsappBtnHandler, formHandler } from './services/events/eventHandlers.js';
 // ===== MAIN =====
 const body = document.getElementById('body');
 body.prepend(Home());
@@ -20,7 +14,7 @@ const inputMessage = document.getElementById('message');
 // ===== EVENT LISTENERS =====
 toFacebookBtn.addEventListener('click', facebookBtnHandler);
 toWhatsappBtn.addEventListener('click', whatsappBtnHandler);
-contacForm.addEventListener('submit', (e) => formHandler(e, inputName, inputPhoneNumber, inputMessage));
+contacForm.addEventListener('submit', (e) => formHandler(e, contacForm, inputName, inputPhoneNumber, inputMessage));
 // // Importar con extensión .js
 // import { Home } from './pages/Home.js';
 // import { Navbar } from './components/navbar/Navbar.js';
