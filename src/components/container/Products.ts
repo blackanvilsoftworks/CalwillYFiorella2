@@ -59,7 +59,7 @@ export class Products extends Container{
             // button.ariaControls = product.id;
 
             li.appendChild(button);
-            
+
             return li.outerHTML;
         }).join('');
         return productsNav;
@@ -70,10 +70,14 @@ export class Products extends Container{
         productContainer.id          = 'productsTabContent';
         productContainer.className   = 'tab-content';
         productContainer.innerHTML   = arrProducts.map((product, i) => {
-            return `
-                <div class="tab-pane fade show${i === 0 ? " active" : ""}" id="${product.id}" role="tabpanel" aria-labelledby="${product.id}-tab">
-                    ${this.createCarousel(product, i).outerHTML}
-                </div>`;
+            const div       = document.createElement('div');
+            div.className   = `tab-pane fade show${i === 0 ? " active" : ""}`;
+            div.id          = product.id;
+            div.role        = 'tabpanel';
+            // div.ariaLabelledby = `${product.id}-tab`;
+            div.appendChild(this.createCarousel(product, i));
+            
+            return div.outerHTML;
         }).join('');
         return productContainer;
     }
