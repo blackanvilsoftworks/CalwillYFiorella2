@@ -1,9 +1,10 @@
-import { createTitle } from '../../utils/createTitle.js';
+import { Container }    from '../Container.js';
+import { createTitle }  from '../../utils/createTitle.js';
+
 import { 
     globalInfo, 
     imagesPath 
 } from '../../utils/constants.js';
-import { Container } from '../Container.js';
 
 export class AboutUs extends Container{
     
