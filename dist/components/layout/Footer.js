@@ -19,27 +19,37 @@ export class Footer {
         const nav = document.createElement('footer');
         nav.id = id;
         nav.className = className;
-        nav.innerHTML = this.createHTML();
+        nav.innerHTML = this.createHTML().outerHTML;
         return nav;
     }
     createHTML() {
-        return `    
-            <div class="container pt-0">
-                <div class="row justify-content-center"> <!-- Centramos la fila -->
-                    <div class="col-12 col-md-8"> <!-- Limitamos el ancho en pantallas grandes -->
-                        <div class="row">
-                            ${this.createSocialMediaButton()}
-                        </div>                    
-                        <hr>                    
-                        <div class="row">
-                            <div class="col-12">
-                                <h5>Calwill & Fiorella</h5>
-                                <p>Distribuidores de calzado infantil y calzado para adultos. Comodidad y estilo para toda la familia.</p>
-                            </div>
-                        </div>                    
-                    </div>
-                </div>
-            </div>`;
+        const div1 = document.createElement('div');
+        div1.className = 'container pt-0';
+        const div2 = document.createElement('div');
+        div2.className = 'row justify-content-center';
+        const div3 = document.createElement('div');
+        div3.className = 'col-12 col-md-8';
+        const div3_1 = document.createElement('div');
+        div3_1.className = 'row';
+        div3_1.innerHTML = this.createSocialMediaButton();
+        const hr = document.createElement('hr');
+        const div3_2 = document.createElement('div');
+        div3_2.className = 'row';
+        const div3_2_1 = document.createElement('div');
+        div3_2_1.className = 'col-12';
+        const h5 = document.createElement('h5');
+        h5.textContent = 'Calwill & Fiorella';
+        const p = document.createElement('p');
+        p.textContent = 'Distribuidores de calzado infantil y calzado para adultos. Comodidad y estilo para toda la familia.';
+        div3_2_1.appendChild(h5);
+        div3_2_1.appendChild(p);
+        div3_2.appendChild(div3_2_1);
+        div3.appendChild(div3_1);
+        div3.appendChild(hr);
+        div3.appendChild(div3_2);
+        div2.appendChild(div3);
+        div1.appendChild(div2);
+        return div1;
     }
     createSocialMediaButton() {
         return arrSocialMedia.map(media => {
