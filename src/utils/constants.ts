@@ -6,7 +6,7 @@ export const globalInfo: GlobalInfo = {
     email       : 'calwillyfiorella@gmail.com'
 };
 
-export const imagesPath: string         = './src/assets/images/';
+export const imagesPath: string = './src/assets/images/';
 
 export const nameRegex          : RegExp = /^[A-Za-z\s]+$/;
 export const phoneNumberRegex   : RegExp = /^[0-9]{10}$/;

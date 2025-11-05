@@ -1,21 +1,20 @@
 .title{
-    font-family: var(--global-font);
-    font-size: 2.5rem;
-    font-weight: 500;
-    color: var(--secondary-color);
-    position: relative;
+    font-family : var(--global-font);
+    font-size   : 2.5rem;
+    font-weight : 500;
+    color       : var(--secondary-color);
+    position    : relative;
 }
 
 .title i {
-    /*margin-left: 10px; /* Espacio entre el texto y el icono */
     color: var(--icons-color); /* Color del icono */
 }
 
 .title:after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--accent-color);
-    margin: 15px auto 0;
+    content     : '';
+    display     : block;
+    width       : 60px;
+    height      : 3px;
+    background  : var(--accent-color);
+    margin      : 15px auto 0;
 }

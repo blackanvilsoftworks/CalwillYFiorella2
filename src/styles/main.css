@@ -14,12 +14,12 @@
 @import url('./components/products/products.css');
 
 :root {
-  --global-font: 'Borel';
-  --primary-background-color: #ffffff;
+  --global-font               : 'Borel';
+  --primary-background-color  : #ffffff;
   --secundary-background-color: rgb(248, 246, 233);
-  --secondary-color: rgb(188, 4, 5); /* titles and navbar */
-  --accent-color: #ed9b40;
-  --icons-color: #000;
+  --secondary-color           : rgb(188, 4, 5); /* titles and navbar */
+  --accent-color              : #ed9b40;
+  --icons-color               : #000;
 }
 
 body {

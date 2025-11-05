@@ -1,10 +1,10 @@
 #contact_form_container {
     background-color: var(--secundary-background-color);
-    padding: 25px;
-    width: 100%;
+    padding         : 25px;
+    width           : 100%;
 }
   
 #contact_form {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas */
+    display     : flex;
+    flex-wrap   : wrap; /* Permite que los elementos se ajusten en varias líneas */
 }

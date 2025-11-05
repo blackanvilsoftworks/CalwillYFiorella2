@@ -1,5 +1,5 @@
 :root {
-    --navbar-color: rgb(250, 235, 214);
+  --navbar-color: rgb(250, 235, 214);
 }
 
 .navbar {
@@ -7,14 +7,14 @@
 }
 
 .navbar-title {
-  font-family: var(--global-font);
-  font-size: 1.5rem;
-  color: var(--secondary-color);
+  font-family : var(--global-font);
+  font-size   : 1.5rem;
+  color       : var(--secondary-color);
 }
 
 #navbarNav .nav-link {
-  font-family: var(--global-font);
-  color: var(--icons-color);
+  font-family : var(--global-font);
+  color       : var(--icons-color);
 }
 
 #navbarNav .nav-link:hover {
@@ -23,8 +23,8 @@
 
 @media (max-width: 576px) {
   .navbar-title {
-    font-size: 1rem !important; /* Tamaño reducido para móviles */
+    font-size   : 1rem !important; /* Tamaño reducido para móviles */
     margin-right: auto;
-    margin-left: auto;
+    margin-left : auto;
   }
 }

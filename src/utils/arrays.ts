@@ -1,10 +1,10 @@
+import { globalInfo }           from './constants.js';
 import { ArrContainer }         from '../interfaces/ArrContainer.js';
+import { ArrProduct }           from '../interfaces/ArrProduct.js';
 import { ArrFeature }           from '../interfaces/ArrFeature.js';
 import { ArrInfoCardContent }   from '../interfaces/ArrInfoCardContent.js';
-import { ArrProduct }           from '../interfaces/ArrProduct.js';
-import { ArrShippingOption }    from '../interfaces/ArrShippingOption.js';
 import { ArrSocialMedia }       from '../interfaces/ArrSocialMedia.js';
-import { globalInfo }           from './constants.js';
+import { ArrShippingOption }    from '../interfaces/ArrShippingOption.js';
 
 export const arrContainers: ArrContainer[] = [
     {
