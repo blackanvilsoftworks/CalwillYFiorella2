@@ -8,16 +8,20 @@ export class ContactForm extends Container {
         this.createHTML(title, icon);
     }
     createHTML(title, icon) {
+        const titleElement = document.createElement('h2');
+        titleElement.className = 'text-center mb-4';
+        titleElement.appendChild(createTitle(title, icon));
+        const contactForm = document.createElement('div');
+        contactForm.className = 'row';
+        contactForm.id = 'form-row';
+        contactForm.appendChild(this.createContactForm());
+        const contactInfoCard = document.createElement('div');
+        contactInfoCard.className = 'row mt-3';
+        contactInfoCard.appendChild(this.createContactInfoCard());
         const html = `
-            <h2 class="text-center mb-4">
-                ${createTitle(title, icon).outerHTML}
-            </h2>
-            <div class="row" id="form-row">
-                ${this.createContactForm().outerHTML}
-            </div>
-            <div class="row mt-3">
-                ${this.createContactInfoCard().outerHTML}
-            </div>`;
+            ${titleElement.outerHTML}
+            ${contactForm.outerHTML}
+            ${contactInfoCard.outerHTML}`;
         this.setHTML(html);
     }
     createContactForm() {
@@ -25,25 +29,80 @@ export class ContactForm extends Container {
         form.id = 'contact_form';
         form.action = `https://formsubmit.co/${globalInfo.email}`;
         form.method = 'POST';
-        form.innerHTML = `
-            <!-- Campos ocultos de FormSubmit -->
-            <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://blackanvilsoftworks.github.io/CalwillYFiorella/#contact-form-container">
-            <input type="hidden" name="_captcha" value="false">
-            <div class="col-12 col-md-6 mb-3 px-1">
-                <label for="name" class="form-label">Nombre</label>
-                <input type="text" name="Nombre" class="form-control" id="name" placeholder="Solo letras" required>
-            </div>
-            <div class="col-12 col-md-6 mb-3 px-1">
-                <label for="phone-number" class="form-label">Número de Teléfono</label>
-                <input type="phone-number" name="Teléfono" class="form-control" id="phone-number" placeholder="Sin espacios ni guiones 1122223333" required>
-            </div>
-            <div class="col-12 mb-3">
-                <label for="message" class="form-label">Mensaje</label>
-                <textarea class="form-control" name="Mensaje" id="message" rows="3" placeholder="Recibirá una respuesta vía WhatsApp lo más pronto posible." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>`;
+        const input1 = document.createElement('input');
+        input1.type = 'hidden';
+        input1.name = '_subject';
+        input1.value = 'Nuevo mensaje desde la web';
+        const input2 = document.createElement('input');
+        input2.type = 'hidden';
+        input2.name = '_template';
+        input2.value = 'table';
+        const input3 = document.createElement('input');
+        input3.type = 'hidden';
+        input3.name = '_next';
+        input3.value = 'https://blackanvilsoftworks.github.io/CalwillYFiorella/#contact-form-container';
+        const input4 = document.createElement('input');
+        input4.type = 'hidden';
+        input4.name = '_captcha';
+        input4.value = 'false';
+        // Campos ocultos de FormSubmit
+        form.appendChild(input1);
+        form.appendChild(input2);
+        form.appendChild(input3);
+        form.appendChild(input4);
+        const div1 = document.createElement('div');
+        div1.className = 'col-12 col-md-6 mb-3 px-1';
+        const label1 = document.createElement('label');
+        label1.htmlFor = 'name';
+        label1.className = 'form-label';
+        label1.textContent = 'Nombre';
+        const inputName = document.createElement('input');
+        inputName.type = 'text';
+        inputName.name = 'Nombre';
+        inputName.className = 'form-control';
+        inputName.id = 'name';
+        inputName.placeholder = 'Solo letras';
+        inputName.required = true;
+        div1.appendChild(label1);
+        div1.appendChild(inputName);
+        const div2 = document.createElement('div');
+        div2.className = 'col-12 col-md-6 mb-3 px-1';
+        const label2 = document.createElement('label');
+        label2.htmlFor = 'phone-number';
+        label2.className = 'form-label';
+        label2.textContent = 'Número de Teléfono';
+        const inputPhone = document.createElement('input');
+        inputPhone.type = 'phone-number';
+        inputPhone.name = 'Teléfono';
+        inputPhone.className = 'form-control';
+        inputPhone.id = 'phone-number';
+        inputPhone.placeholder = 'Sin espacios ni guiones 1122223333';
+        inputPhone.required = true;
+        div2.appendChild(label2);
+        div2.appendChild(inputPhone);
+        const div3 = document.createElement('div');
+        div3.className = 'col-12 mb-3';
+        const label3 = document.createElement('label');
+        label3.htmlFor = 'message';
+        label3.className = 'form-label';
+        label3.textContent = 'Mensaje';
+        const textarea = document.createElement('textarea');
+        textarea.className = 'form-control';
+        textarea.name = 'Mensaje';
+        textarea.id = 'message';
+        textarea.rows = 3;
+        textarea.placeholder = 'Recibirá una respuesta vía WhatsApp lo más pronto posible.';
+        textarea.required = true;
+        div3.appendChild(label3);
+        div3.appendChild(textarea);
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.className = 'btn btn-primary';
+        submitButton.textContent = 'Enviar';
+        form.appendChild(div1);
+        form.appendChild(div2);
+        form.appendChild(div3);
+        form.appendChild(submitButton);
         return form;
     }
     createContactInfoCard() {
