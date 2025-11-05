@@ -127,12 +127,17 @@ export class ContactForm extends Container {
     ;
     createContactInfoCardItems() {
         return arrInfoCardContent.map(item => {
-            return `
-                <div class="row mb-2">
-                    <div class="col-1"><i class="${item.icon}"></i></div>
-                    <div class="col-11">${item.type}: ${item.value}</div>
-                </div>
-            `;
+            const container = document.createElement('div');
+            container.className = 'row mb-2';
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'col-1';
+            iconDiv.innerHTML = `<i class="${item.icon}"></i>`;
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'col-11';
+            infoDiv.textContent = `${item.type}: ${item.value}`;
+            container.appendChild(iconDiv);
+            container.appendChild(infoDiv);
+            return container.outerHTML;
         }).join('');
     }
     ;
