@@ -25,19 +25,40 @@ export class Navbar {
     }
     createHTML() {
         var _a;
-        return `
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}">
-                    <img src="./assets/navbar-logo.png" alt="${globalInfo.name} Logo" height="40" class="d-inline-block align-text-top me-2">
-                    <span class="ms-2 navbar-title">${globalInfo.name.toUpperCase()}</span>
-                </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse text-center ps-auto" id="navbarNav">
-                    ${this.createNavbarItems().outerHTML}
-                </div>
-            </div>`;
+        const div1 = document.createElement('div');
+        div1.className = 'container-fluid';
+        const a = document.createElement('a');
+        a.className = 'navbar-brand';
+        a.href = `#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}`;
+        const img = document.createElement('img');
+        img.src = './assets/navbar-logo.png';
+        img.alt = `${globalInfo.name} Logo`;
+        img.height = 40;
+        img.className = 'd-inline-block align-text-top me-2';
+        const span = document.createElement('span');
+        span.className = 'ms-2 navbar-title';
+        span.textContent = globalInfo.name.toUpperCase();
+        a.appendChild(img);
+        a.appendChild(span);
+        div1.appendChild(a);
+        const button = document.createElement('button');
+        button.className = 'navbar-toggler border-0';
+        button.type = 'button';
+        button.setAttribute('data-bs-toggle', 'collapse');
+        button.setAttribute('data-bs-target', '#navbarNav');
+        button.setAttribute('aria-controls', 'navbarNav');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Toggle navigation');
+        const spanIcon = document.createElement('span');
+        spanIcon.className = 'navbar-toggler-icon';
+        button.appendChild(spanIcon);
+        div1.appendChild(button);
+        const div2 = document.createElement('div');
+        div2.className = 'collapse navbar-collapse text-center ps-auto';
+        div2.id = 'navbarNav';
+        div2.appendChild(this.createNavbarItems());
+        div1.appendChild(div2);
+        return div1.outerHTML;
     }
     createNavbarItems() {
         const ul = document.createElement('ul');
