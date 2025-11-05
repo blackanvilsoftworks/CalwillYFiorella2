@@ -86,22 +86,43 @@ export class Products extends Container{
         const carouselContainer       = document.createElement('div');
         carouselContainer.className   = 'row';
         carouselContainer.innerHTML   = product.cards.map((card, j) => {
-            const id = `carousel-${product.id}-product${j + 1}`;
-            return `
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card product-card">
-                        <div id="${id}" class="carousel slide" data-bs-ride="carousel">
-                            ${this.createCarouselImages(product, card, j).outerHTML}
-                            ${this.createCarouselButtons(id, 'prev').outerHTML}
-                            ${this.createCarouselButtons(id, 'next').outerHTML}
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${card.title}</h5>
-                            <p class="card-text">${card.description}</p>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
+            const cardContainer                 = document.createElement('div');
+            cardContainer.className             = 'col-12 col-md-6 col-lg-4';
+
+            const productCard                   = document.createElement('div');
+            productCard.className               = 'card product-card';
+
+            const carouselContainer             = document.createElement('div');
+            carouselContainer.id                = `carousel-${product.id}-product${j + 1}`;
+            carouselContainer.className         = 'carousel slide';
+            carouselContainer.dataset.bsRide    = 'carousel';
+
+            carouselContainer.appendChild(this.createCarouselImages(product, card, j));
+            carouselContainer.appendChild(this.createCarouselButtons(carouselContainer.id, 'prev'));
+            carouselContainer.appendChild(this.createCarouselButtons(carouselContainer.id, 'next'));
+
+            productCard.appendChild(carouselContainer);
+
+            const cardBody          = document.createElement('div');
+            cardBody.className      = 'card-body';
+
+            const cardTitle         = document.createElement('h5');
+            cardTitle.className     = 'card-title';
+            cardTitle.textContent   = card.title;
+
+            const cardText          = document.createElement('p');
+            cardText.className      = 'card-text';
+            cardText.textContent    = card.description;
+
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardText);
+
+            productCard.appendChild(cardBody);
+
+            cardContainer.appendChild(productCard);
+
+            return cardContainer.outerHTML;
+        }).join('');
         return carouselContainer;
     }
 
