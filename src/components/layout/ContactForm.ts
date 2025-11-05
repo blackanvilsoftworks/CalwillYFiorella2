@@ -133,17 +133,28 @@ export class ContactForm extends Container {
     }
 
     private createContactInfoCard (): HTMLDivElement {
-        const contactInfoCard = document.createElement('div');
-        contactInfoCard.className = 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto';
-        contactInfoCard.innerHTML = `
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Información de Contacto</h5>
-                    <div class="container">
-                        ${this.createContactInfoCardItems()}
-                    </div>
-                </div>
-            </div>`;
+        const contactInfoCard       = document.createElement('div');
+        contactInfoCard.className   = 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto';
+
+        const cardHeader        = document.createElement('div');
+        cardHeader.className    = 'card h-100';
+
+        const cardBody          = document.createElement('div');
+        cardBody.className      = 'card-body';
+
+        const cardTitle         = document.createElement('h5');
+        cardTitle.className     = 'card-title';
+        cardTitle.textContent   = 'Información de Contacto';
+
+        const container         = document.createElement('div');
+        container.className     = 'container';
+        container.innerHTML     = this.createContactInfoCardItems();
+
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(container);
+        cardHeader.appendChild(cardBody);
+        contactInfoCard.appendChild(cardHeader);
+
         return contactInfoCard;
     };
 
