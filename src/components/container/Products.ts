@@ -34,7 +34,7 @@ export class Products extends Container{
         div2.appendChild(div3);
         div1.appendChild(div2);
 
-        this.setHTML(div1.innerHTML);
+        this.setHTML(div1.outerHTML);
     }
 
     private createProductsNav (): HTMLUListElement {
@@ -43,11 +43,25 @@ export class Products extends Container{
         productsNav.className   = 'nav nav-pills justify-content-center mb-4';
         productsNav.role        = 'tablist';
         productsNav.innerHTML   = arrProducts.map((product, i) => {
-            return `
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link btn-primary${i === 0 ? " active" : ""}" id="${product.id}-tab" data-bs-toggle="pill" data-bs-target="#${product.id}" type="button" role="tab" aria-controls="${product.id}" aria-selected="${i === 0 ? "true" : "false"}">${product.title}</button>
-                </li>`;
-            }).join('');
+            const li                = document.createElement('li');
+            li.className            = 'nav-item';
+            li.role                 = 'presentation';
+
+            const button            = document.createElement('button');
+            button.className        = `nav-link btn-primary${i === 0 ? " active" : ""}`;
+            button.id               = `${product.id}-tab`;
+            button.type             = 'button';
+            button.role             = 'tab';
+            button.dataset.bsToggle = 'pill';
+            button.dataset.bsTarget = `#${product.id}`;
+            button.ariaSelected     = i === 0 ? "true" : "false";
+            button.textContent      = product.title;
+            // button.ariaControls = product.id;
+
+            li.appendChild(button);
+            
+            return li.outerHTML;
+        }).join('');
         return productsNav;
     }
 
