@@ -43,12 +43,18 @@ export class Footer {
     }
     createSocialMediaButton() {
         return arrSocialMedia.map(media => {
-            return `
-            <div class="col-12 col-sm-6 mb-3">
-                <button type="button" class="btn btn-outline-${media.color} w-100" id="btn_${media.name}">
-                    <i class="${media.icon}"></i> ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}
-                </button>
-            </div>`;
+            const div = document.createElement('div');
+            div.className = 'col-12 col-sm-6 mb-3';
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = `btn btn-outline-${media.color} w-100`;
+            button.id = `btn_${media.name}`;
+            button.textContent = ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`;
+            const icon = document.createElement('i');
+            icon.className = media.icon;
+            button.prepend(icon);
+            div.appendChild(button);
+            return div.outerHTML;
         }).join('');
     }
 }
