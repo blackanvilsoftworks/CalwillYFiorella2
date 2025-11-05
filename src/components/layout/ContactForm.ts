@@ -160,15 +160,15 @@ export class ContactForm extends Container {
 
     private createContactInfoCardItems (): string {
         return arrInfoCardContent.map(item => {
-            const container = document.createElement('div');
+            const container     = document.createElement('div');
             container.className = 'row mb-2';
             
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'col-1';
-            iconDiv.innerHTML = `<i class="${item.icon}"></i>`;
+            const iconDiv       = document.createElement('div');
+            iconDiv.className   = 'col-1';
+            iconDiv.innerHTML   = `<i class="${item.icon}"></i>`;
 
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'col-11';
+            const infoDiv       = document.createElement('div');
+            infoDiv.className   = 'col-11';
             infoDiv.textContent = `${item.type}: ${item.value}`;
 
             container.appendChild(iconDiv);
