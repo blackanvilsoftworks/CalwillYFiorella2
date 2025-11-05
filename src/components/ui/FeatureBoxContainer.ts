@@ -7,14 +7,26 @@ export class FeatureBoxContainer extends Container {
     }
 
     private createHTML (icon: string, title: string, description: string): void {
-        const html = `
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="${icon}"></i>
-                </div>
-                <h3>${title}</h3>
-                <p>${description}</p>
-            </div>`;
-        this.setHTML(html);
+        const div1 = document.createElement('div');
+        div1.classList.add('feature-box');
+
+        const div2 = document.createElement('div');
+        div2.classList.add('feature-icon');
+
+        const iElement = document.createElement('i');
+        iElement.className = icon;
+
+        div2.appendChild(iElement);
+        div1.appendChild(div2);
+
+        const h3Element = document.createElement('h3');
+        h3Element.textContent = title;
+        div1.appendChild(h3Element);
+
+        const pElement = document.createElement('p');
+        pElement.textContent = description;
+        div1.appendChild(pElement);
+
+        this.setHTML(div1.outerHTML);
     }
 }

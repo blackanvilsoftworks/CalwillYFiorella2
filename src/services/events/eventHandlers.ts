@@ -11,7 +11,7 @@ export const facebookBtnHandler = (): void => {
     facebookItem ?
         window.open(facebookItem.url, '_blank') :
         alert('Facebook URL not found');
-}
+};
 
 export const whatsappBtnHandler = (): void => {
     const whatsappItem = arrSocialMedia.find(item => item.name === 'whatsapp');
@@ -25,7 +25,7 @@ export const whatsappBtnHandler = (): void => {
     const whatsappMessage   = "MENSAJE_AQUI";
     const whatsappURL       = `${whatsappItem.url}?text=Hola,%20mi%20nombre%20es%20${encodeURIComponent(whatsappName)}.%20Quería%20consultar%20por%20${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappURL, '_blank');
-}
+};
 
 export const formHandler = (
     e               : Event,
@@ -49,4 +49,4 @@ export const formHandler = (
     inputPhoneNumber.value = whatsappLinkPhoneNumber;
     contacForm.submit();
     contacForm.reset();
-}
+};
