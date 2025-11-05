@@ -130,13 +130,13 @@ export class Products extends Container{
         const carouselImg       = document.createElement('div');
         carouselImg.className   = 'carousel-inner';
         carouselImg.innerHTML   = card.carouselImages.map((_, k) => {
-            const div = document.createElement('div');
-            div.className = `carousel-item${k === 0 ? ' active' : ''}`;
+            const div       = document.createElement('div');
+            div.className   = `carousel-item${k === 0 ? ' active' : ''}`;
 
-            const img = document.createElement('img');
-            img.src = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
-            img.className = 'd-block w-100';
-            img.alt = `Imagen ${k + 1}`;
+            const img       = document.createElement('img');
+            img.src         = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
+            img.className   = 'd-block w-100';
+            img.alt         = `Imagen ${k + 1}`;
 
             div.appendChild(img);
 
