@@ -1,34 +1,26 @@
 import { Home } from './pages/Home.js';
 // ===== EVENT LISTENERS =====
-import { facebookBtnHandler, whatsappBtnHandler } from './utils/eventListeners.js';
+import { facebookBtnHandler, whatsappBtnHandler, formHandler } from './utils/eventListeners.js';
 // ===== VALIDACIONES =====
-import { nameValidation, phoneNumberValidation, messageValidation } from './utils/validations.js';
+// import { 
+//     nameValidation, 
+//     phoneNumberValidation, 
+//     messageValidation 
+// } from './utils/validations.js';
 // ===== MAIN =====
 const body = document.getElementById('body');
 body.prepend(Home());
-// ===== SELECTORES DEL DOM =====
-const contacForm = document.getElementById('contact_form');
+// ===== IDs CONSTANTES DEL DOM =====
 const toFacebookBtn = document.getElementById('btn_facebook');
 const toWhatsappBtn = document.getElementById('btn_whatsapp');
+const contacForm = document.getElementById('contact_form');
+const inputName = document.getElementById('name');
+const inputPhoneNumber = document.getElementById('phone-number');
+const inputMessage = document.getElementById('message');
 // ===== EVENT LISTENERS =====
 toFacebookBtn.addEventListener('click', facebookBtnHandler);
 toWhatsappBtn.addEventListener('click', whatsappBtnHandler);
-contacForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const inputName = document.getElementById('name');
-    const inputPhoneNumber = document.getElementById('phone-number');
-    const inputMessage = document.getElementById('message');
-    const cleanedName = nameValidation(inputName);
-    const cleanedPhoneNumber = phoneNumberValidation(inputPhoneNumber);
-    const cleanedMessage = messageValidation(inputMessage);
-    if (!cleanedName || !cleanedPhoneNumber || !cleanedMessage) {
-        return;
-    }
-    const whatsappLinkPhoneNumber = `https://wa.me/549${cleanedPhoneNumber}`;
-    inputPhoneNumber.value = whatsappLinkPhoneNumber;
-    contacForm.submit();
-    contacForm.reset();
-});
+contacForm.addEventListener('submit', (e) => formHandler(e, inputName, inputPhoneNumber, inputMessage));
 // // Importar con extensión .js
 // import { Home } from './pages/Home.js';
 // import { Navbar } from './components/navbar/Navbar.js';
