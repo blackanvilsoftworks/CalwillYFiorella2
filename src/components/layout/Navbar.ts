@@ -50,10 +50,16 @@ export class Navbar {
         ul.className    = 'navbar-nav ms-auto';
         ul.innerHTML    = arrContainers.map((item: ArrContainer) => {
             if (item.navbar){
-                return `
-                    <li class="nav-item">
-                        <a class="nav-link" href="#${item.id}">${item.navbar}</a>
-                    </li>`;
+                const li        = document.createElement('li');
+                li.className    = 'nav-item';
+
+                const a        = document.createElement('a');
+                a.className    = 'nav-link';
+                a.href         = `#${item.id}`;
+                a.textContent  = item.navbar;
+
+                li.appendChild(a);
+                return li.outerHTML;
             }
         }).join('');
         return ul;
