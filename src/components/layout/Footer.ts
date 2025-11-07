@@ -1,4 +1,5 @@
 import { arrSocialMedia }    from '../../utils/arrays.js';
+import { ButtonElement } from '../elements/Button.js';
 
 export class Footer {
     private container: HTMLElement;
@@ -74,17 +75,18 @@ export class Footer {
             const div = document.createElement('div');
             div.className = 'col-12 col-sm-6 mb-3';
 
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = `btn btn-outline-${media.color} w-100`;
-            button.id = `btn_${media.name}`;
-            button.textContent = ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`;
+            const button = new ButtonElement({
+                id: `btn_${media.name}`,
+                className: `btn btn-outline-${media.color} w-100`,
+                // type: 'button',
+                text: ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
+            });
 
             const icon = document.createElement('i');
             icon.className = media.icon;
 
-            button.prepend(icon);
-            div.appendChild(button);
+            button.addFirstChild(icon);
+            div.appendChild(button.getButton());
 
             return div.outerHTML;
         }).join('');
