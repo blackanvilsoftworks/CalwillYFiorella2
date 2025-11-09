@@ -72,18 +72,17 @@ export class Footer {
 
     private createSocialMediaButton (): string {
         return arrSocialMedia.map(media => { 
-            const div = document.createElement('div');
-            div.className = 'col-12 col-sm-6 mb-3';
+            const div       = document.createElement('div');
+            div.className   = 'col-12 col-sm-6 mb-3';
 
             const button = new ButtonElement({
-                id: `btn_${media.name}`,
-                className: `btn btn-outline-${media.color} w-100`,
-                // type: 'button',
-                text: ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
+                id          : `btn_${media.name}`,
+                className   : `btn btn-outline-${media.color} w-100`,
+                text        : ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
             });
 
-            const icon = document.createElement('i');
-            icon.className = media.icon;
+            const icon      = document.createElement('i');
+            icon.className  = media.icon;
 
             button.addFirstChild(icon);
             div.appendChild(button.getButton());

@@ -2,6 +2,7 @@ import { globalInfo }           from '../../utils/constants.js';
 import { createTitle }          from '../../utils/createTitle.js';
 import { arrInfoCardContent }   from '../../utils/arrays.js';
 import { Container }            from '../Container.js';
+import { ButtonElement } from '../elements/Button.js';
 
 export class ContactForm extends Container {
     constructor (id: string, className: string, title: string, icon: string) {
@@ -119,16 +120,16 @@ export class ContactForm extends Container {
         div3.appendChild(label3);
         div3.appendChild(textarea);
 
-        const submitButton          = document.createElement('button');
-        submitButton.type           = 'submit';
-        submitButton.className      = 'btn btn-primary';
-        submitButton.textContent    = 'Enviar';
+        const submitButton          = new ButtonElement({
+            text        : 'Enviar',
+            type        : 'submit',
+            className   : 'btn btn-primary'
+        });
 
         form.appendChild(div1);
         form.appendChild(div2);
         form.appendChild(div3);
-        form.appendChild(submitButton);
-
+        form.appendChild(submitButton.getButton());
         return form;
     }
 

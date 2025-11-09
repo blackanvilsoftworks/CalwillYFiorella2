@@ -59,7 +59,6 @@ export class Footer {
             const button = new ButtonElement({
                 id: `btn_${media.name}`,
                 className: `btn btn-outline-${media.color} w-100`,
-                // type: 'button',
                 text: ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
             });
             const icon = document.createElement('i');

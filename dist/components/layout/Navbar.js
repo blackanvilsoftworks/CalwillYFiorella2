@@ -1,5 +1,6 @@
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
+import { ButtonElement } from '../elements/Button.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -41,18 +42,19 @@ export class Navbar {
         a.appendChild(img);
         a.appendChild(span);
         div1.appendChild(a);
-        const button = document.createElement('button');
-        button.className = 'navbar-toggler border-0';
-        button.type = 'button';
-        button.setAttribute('data-bs-toggle', 'collapse');
-        button.setAttribute('data-bs-target', '#navbarNav');
-        button.setAttribute('aria-controls', 'navbarNav');
-        button.setAttribute('aria-expanded', 'false');
-        button.setAttribute('aria-label', 'Toggle navigation');
+        const button = new ButtonElement({
+            className: 'navbar-toggler border-0',
+            type: 'button',
+            data_bs_toggle: 'collapse',
+            data_bs_target: '#navbarNav',
+            aria_controls: 'navbarNav',
+            aria_expanded: 'false',
+            aria_label: 'Toggle navigation'
+        });
         const spanIcon = document.createElement('span');
         spanIcon.className = 'navbar-toggler-icon';
-        button.appendChild(spanIcon);
-        div1.appendChild(button);
+        button.addFirstChild(spanIcon);
+        div1.appendChild(button.getButton());
         const div2 = document.createElement('div');
         div2.className = 'collapse navbar-collapse text-center ps-auto';
         div2.id = 'navbarNav';
