@@ -6,6 +6,7 @@ import { createTitle }  from '../../utils/createTitle.js';
 
 import { ArrProduct }   from '../../interfaces/ArrProduct.js';
 import { ProductCard }  from '../../interfaces/ProductCard.js';
+import { ButtonElement } from '../elements/Button.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -47,18 +48,17 @@ export class Products extends Container{
             li.className            = 'nav-item';
             li.role                 = 'presentation';
 
-            const button            = document.createElement('button');
-            button.className        = `nav-link btn-primary${i === 0 ? " active" : ""}`;
-            button.id               = `${product.id}-tab`;
-            button.type             = 'button';
-            button.role             = 'tab';
-            button.dataset.bsToggle = 'pill';
-            button.dataset.bsTarget = `#${product.id}`;
-            button.ariaSelected     = i === 0 ? "true" : "false";
-            button.textContent      = product.title;
-            // button.ariaControls = product.id;
+            const button = new ButtonElement({
+                id              : `${product.id}-tab`,
+                text            : product.title,
+                className       : `nav-link btn-primary${i === 0 ? " active" : ""}`,
+                data_bs_toggle  : 'pill',
+                data_bs_target  : `#${product.id}`,
+                aria_selected   : i === 0 ? "true" : "false",
+                // aria_controls: product.id
+            });
 
-            li.appendChild(button);
+            li.appendChild(button.getButton());
 
             return li.outerHTML;
         }).join('');
@@ -146,12 +146,12 @@ export class Products extends Container{
     }
 
     private createCarouselButtons (id: string, prevOrNext: 'prev' | 'next'): HTMLButtonElement {
-        const btn               = document.createElement('button');
-        btn.className           = `carousel-control-${prevOrNext}`;
-        btn.type                = 'button';
-        btn.dataset.bsTarget    = `#${id}`;
-        btn.dataset.bsSlide     = prevOrNext;
-
+        const btn               = new ButtonElement({
+            className       : `carousel-control-${prevOrNext}`,
+            data_bs_target  : `#${id}`,
+            data_bs_slide   : prevOrNext,
+        });
+        
         const span1             = document.createElement('span');
         span1.className         = `carousel-control-${prevOrNext}-icon`;
         span1.setAttribute('aria-hidden', 'true');
@@ -160,9 +160,9 @@ export class Products extends Container{
         span2.className         = 'visually-hidden';
         span2.textContent       = prevOrNext === 'next' ? 'Next' : 'Previous';
 
-        btn.appendChild(span1);
-        btn.appendChild(span2);
+        btn.addLastChild(span1);
+        btn.addLastChild(span2);
 
-        return btn;
+        return btn.getButton();
     }
 }
