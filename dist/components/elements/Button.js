@@ -1,11 +1,11 @@
 export class ButtonElement {
-    constructor({ id, className, type, text, dataBsAttributes, aria_controls, aria_expanded, aria_label, aria_selected }) {
+    constructor({ id, className, type, text, dataBsAttributes, ariaAttributes }) {
         this.button = document.createElement('button');
+        this.button.type = type !== null && type !== void 0 ? type : 'button';
         if (id)
             this.button.id = id;
         if (className)
             this.button.className = className;
-        this.button.type = type !== null && type !== void 0 ? type : 'button';
         if (dataBsAttributes) {
             dataBsAttributes.forEach(attr => {
                 if (attr.toggle)
@@ -16,10 +16,18 @@ export class ButtonElement {
                     this.button.dataset.bsSlide = attr.slide;
             });
         }
-        this.button.setAttribute('aria-controls', aria_controls !== null && aria_controls !== void 0 ? aria_controls : '');
-        this.button.setAttribute('aria-expanded', aria_expanded !== null && aria_expanded !== void 0 ? aria_expanded : '');
-        this.button.setAttribute('aria-label', aria_label !== null && aria_label !== void 0 ? aria_label : '');
-        this.button.setAttribute('aria-selected', aria_selected !== null && aria_selected !== void 0 ? aria_selected : '');
+        if (ariaAttributes) {
+            ariaAttributes.forEach(attr => {
+                if (attr.label)
+                    this.button.setAttribute('aria-controls', attr.controls);
+                if (attr.controls)
+                    this.button.setAttribute('aria-expanded', attr.expanded);
+                if (attr.expanded)
+                    this.button.setAttribute('aria-label', attr.label);
+                if (attr.selected)
+                    this.button.setAttribute('aria-selected', attr.selected);
+            });
+        }
         this.button.appendChild(document.createTextNode(text !== null && text !== void 0 ? text : ''));
     }
     getButton() {

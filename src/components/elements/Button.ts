@@ -9,16 +9,14 @@ export class ButtonElement {
             type, 
             text,
             dataBsAttributes,
-            aria_controls,
-            aria_expanded,
-            aria_label,
-            aria_selected
+            ariaAttributes
         }: iButtonElement) {
         this.button             = document.createElement('button')
         
+        this.button.type = type ?? 'button';
+
         if (id)         this.button.id          = id;
         if (className)  this.button.className   = className;
-        this.button.type = type ?? 'button';
 
         if (dataBsAttributes) {
             dataBsAttributes.forEach(attr => {
@@ -28,11 +26,15 @@ export class ButtonElement {
             });
         }
 
-        this.button.setAttribute('aria-controls' , aria_controls    ?? '');
-        this.button.setAttribute('aria-expanded' , aria_expanded    ?? '');
-        this.button.setAttribute('aria-label'    , aria_label       ?? '');
-        this.button.setAttribute('aria-selected' , aria_selected    ?? '');
-        
+        if (ariaAttributes) {
+            ariaAttributes.forEach(attr => {
+                if (attr.label)    this.button.setAttribute('aria-controls' , attr.controls!);
+                if (attr.controls) this.button.setAttribute('aria-expanded' , attr.expanded!);
+                if (attr.expanded) this.button.setAttribute('aria-label'    , attr.label!);
+                if (attr.selected) this.button.setAttribute('aria-selected' , attr.selected!);
+            });
+        }
+                                        
         this.button.appendChild(document.createTextNode(text ?? ''));
     }
 

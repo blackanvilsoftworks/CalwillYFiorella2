@@ -49,9 +49,11 @@ export class Navbar {
                     toggle: 'collapse',
                     target: '#navbarNav',
                 }],
-            aria_controls: 'navbarNav',
-            aria_expanded: 'false',
-            aria_label: 'Toggle navigation'
+            ariaAttributes: [{
+                    controls: 'navbarNav',
+                    expanded: 'false',
+                    label: 'Toggle navigation'
+                }]
         });
         const spanIcon = document.createElement('span');
         spanIcon.className = 'navbar-toggler-icon';

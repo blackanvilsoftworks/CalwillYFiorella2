@@ -42,7 +42,9 @@ export class Products extends Container {
                         toggle: 'pill',
                         target: `#${product.id}`,
                     }],
-                aria_selected: i === 0 ? "true" : "false",
+                ariaAttributes: [{
+                        selected: i === 0 ? "true" : "false",
+                    }]
                 // aria_controls: product.id
             });
             li.appendChild(button.getButton());
