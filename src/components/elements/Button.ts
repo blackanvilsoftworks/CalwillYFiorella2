@@ -1,41 +1,23 @@
-import { iButtonElement } from "../../interfaces/elements/iButtonElement";
+import { iButtonElement } from "../../interfaces/elements/iButtonElement.js";
+import { BaseElements } from "./Base.js";
 
-export class ButtonElement {
+export class ButtonElement extends BaseElements{
     private button: HTMLButtonElement;
 
     constructor ({
-            id, 
-            className, 
+            id,
+            className,
             type, 
             text,
             dataBsAttributes,
             ariaAttributes
         }: iButtonElement) {
-        this.button             = document.createElement('button')
+        super('button', {id, className, text, dataBsAttributes, ariaAttributes});
         
-        this.button.type = type ?? 'button';
+        this.button         = this.getElement() as HTMLButtonElement;
+        
+        this.button.type    = type ?? 'button';
 
-        if (id)         this.button.id          = id;
-        if (className)  this.button.className   = className;
-
-        if (dataBsAttributes) {
-            dataBsAttributes.forEach(attr => {
-                if (attr.toggle)    this.button.dataset.bsToggle    = attr.toggle;
-                if (attr.target)    this.button.dataset.bsTarget    = attr.target;
-                if (attr.slide)     this.button.dataset.bsSlide     = attr.slide;
-            });
-        }
-
-        if (ariaAttributes) {
-            ariaAttributes.forEach(attr => {
-                if (attr.label)    this.button.setAttribute('aria-controls' , attr.controls!);
-                if (attr.controls) this.button.setAttribute('aria-expanded' , attr.expanded!);
-                if (attr.expanded) this.button.setAttribute('aria-label'    , attr.label!);
-                if (attr.selected) this.button.setAttribute('aria-selected' , attr.selected!);
-            });
-        }
-                                        
-        this.button.appendChild(document.createTextNode(text ?? ''));
     }
 
     public getButton (): HTMLButtonElement {
