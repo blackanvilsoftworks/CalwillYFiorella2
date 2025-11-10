@@ -44,16 +44,18 @@ export class Products extends Container{
         productsNav.className   = 'nav nav-pills justify-content-center mb-4';
         productsNav.role        = 'tablist';
         productsNav.innerHTML   = arrProducts.map((product, i) => {
-            const li                = document.createElement('li');
-            li.className            = 'nav-item';
-            li.role                 = 'presentation';
+            const li        = document.createElement('li');
+            li.className    = 'nav-item';
+            li.role         = 'presentation';
 
             const button = new ButtonElement({
                 id              : `${product.id}-tab`,
                 text            : product.title,
                 className       : `nav-link btn-primary${i === 0 ? " active" : ""}`,
-                data_bs_toggle  : 'pill',
-                data_bs_target  : `#${product.id}`,
+                dataBsAttributes: [{
+                    toggle  : 'pill',
+                    target  : `#${product.id}`,
+                }],
                 aria_selected   : i === 0 ? "true" : "false",
                 // aria_controls: product.id
             });
@@ -148,8 +150,10 @@ export class Products extends Container{
     private createCarouselButtons (id: string, prevOrNext: 'prev' | 'next'): HTMLButtonElement {
         const btn               = new ButtonElement({
             className       : `carousel-control-${prevOrNext}`,
-            data_bs_target  : `#${id}`,
-            data_bs_slide   : prevOrNext,
+            dataBsAttributes: [{
+                target  : `#${id}`,
+                slide   : prevOrNext,
+            }],
         });
         
         const span1             = document.createElement('span');

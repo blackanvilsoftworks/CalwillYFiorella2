@@ -1,11 +1,11 @@
+import { iDataBsAtributes } from "./iDataBsAtributes";
+
 export interface iButtonElement {
     id?: string;
     className?: string;
     type?: "submit" | "reset" | "button";
     text?: string;
-    data_bs_toggle?: string;
-    data_bs_target?: string;
-    data_bs_slide?: string;
+    dataBsAttributes?: iDataBsAtributes[];
     aria_controls?: string;
     aria_expanded?: string;
     aria_label?: string;

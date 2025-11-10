@@ -45,8 +45,10 @@ export class Navbar {
         const button = new ButtonElement({
             className: 'navbar-toggler border-0',
             type: 'button',
-            data_bs_toggle: 'collapse',
-            data_bs_target: '#navbarNav',
+            dataBsAttributes: [{
+                    toggle: 'collapse',
+                    target: '#navbarNav',
+                }],
             aria_controls: 'navbarNav',
             aria_expanded: 'false',
             aria_label: 'Toggle navigation'
