@@ -8,3 +8,7 @@ export interface iBaseElement {
     dataBsAttributes?   : iDataBsAttributes[]   | undefined;
     ariaAttributes?     : iAriaAttributes[]     | undefined;
 }
+
+
+// title="Tooltip informativo" 
+// hiddenture/false

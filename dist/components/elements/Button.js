@@ -1,6 +1,6 @@
 import { BaseElements } from "./Base.js";
 export class ButtonElement extends BaseElements {
-    constructor({ id, className, type, text, dataBsAttributes, ariaAttributes }) {
+    constructor({ id, className, text, dataBsAttributes, ariaAttributes, type }) {
         super('button', { id, className, text, dataBsAttributes, ariaAttributes });
         this.button = this.getElement();
         this.button.type = type !== null && type !== void 0 ? type : 'button';
@@ -12,22 +12,6 @@ export class ButtonElement extends BaseElements {
         catch (error) {
             console.error(error);
             return document.createElement('button');
-        }
-    }
-    addFirstChild(element) {
-        if (typeof element === 'string') {
-            this.button.prepend(document.createTextNode(element));
-        }
-        else {
-            this.button.prepend(element);
-        }
-    }
-    addLastChild(element) {
-        if (typeof element === 'string') {
-            this.button.appendChild(document.createTextNode(element));
-        }
-        else {
-            this.button.appendChild(element);
         }
     }
 }

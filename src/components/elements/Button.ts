@@ -7,15 +7,15 @@ export class ButtonElement extends BaseElements{
     constructor ({
             id,
             className,
-            type, 
             text,
             dataBsAttributes,
-            ariaAttributes
+            ariaAttributes,
+            type
         }: iButtonElement) {
         super('button', {id, className, text, dataBsAttributes, ariaAttributes});
         
         this.button         = this.getElement() as HTMLButtonElement;
-        
+
         this.button.type    = type ?? 'button';
 
     }
@@ -28,20 +28,5 @@ export class ButtonElement extends BaseElements{
             return document.createElement('button');
         }
     }
-
-    public addFirstChild (element: HTMLElement | string): void {
-        if (typeof element === 'string') {
-            this.button.prepend(document.createTextNode(element));
-        } else {
-            this.button.prepend(element);
-        }
-    }
-
-    public addLastChild (element: HTMLElement | string): void {
-        if (typeof element === 'string') {
-            this.button.appendChild(document.createTextNode(element));
-        } else {
-            this.button.appendChild(element);
-        }
-    }
 }
+
