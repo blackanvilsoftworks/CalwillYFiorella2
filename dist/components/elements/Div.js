@@ -3,8 +3,10 @@ export class DivElement extends BaseElements {
     constructor({ id, className, text, dataBsAttributes, ariaAttributes, contenteditable, spellcheck }) {
         super('div', { id, className, text, dataBsAttributes, ariaAttributes });
         this.div = this.getElement();
-        this.div.contentEditable = contenteditable !== null && contenteditable !== void 0 ? contenteditable : 'false';
-        this.div.spellcheck = spellcheck !== null && spellcheck !== void 0 ? spellcheck : false;
+        if (contenteditable)
+            this.div.contentEditable = contenteditable;
+        if (spellcheck)
+            this.div.spellcheck = spellcheck;
     }
     getDiv() {
         try {

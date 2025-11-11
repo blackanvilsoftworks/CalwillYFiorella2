@@ -7,6 +7,7 @@ import { createTitle }  from '../../utils/createTitle.js';
 import { ArrProduct }   from '../../interfaces/ArrProduct.js';
 import { ProductCard }  from '../../interfaces/ProductCard.js';
 import { ButtonElement } from '../elements/Button.js';
+import { DivElement } from '../elements/Div.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -15,27 +16,25 @@ export class Products extends Container{
     }
 
     private createHTML (title: string, icon: string): void {
-        const div1      = document.createElement('div');
-        div1.className  = 'row justify-content-center';
 
-        const div2      = document.createElement('div');
-        div2.className  = 'col-10 col-lg-12 px-lg-5';
-
-        const div3      = document.createElement('div');
-        div3.className  = 'row';
-
-        const h         = document.createElement('h2');
-        h.className     = 'text-center';
+        const div1  = new DivElement({className: 'row justify-content-center'});
+        
+        const div2  = new DivElement({className: 'col-10 col-lg-12 px-lg-5'});
+        
+        const div3  = new DivElement({className: 'row'});
+        
+        const h     = document.createElement('h2');
+        h.className = 'text-center';
         h.appendChild(createTitle(title, icon));
 
-        div3.appendChild(h);
-        div3.appendChild(this.createProductsNav());
-        div3.appendChild(this.createProductsContainers());
+        div3.addLastChild(h);
+        div3.addLastChild(this.createProductsNav());
+        div3.addLastChild(this.createProductsContainers());
 
-        div2.appendChild(div3);
-        div1.appendChild(div2);
+        div2.addLastChild(div3.getDiv());
+        div1.addLastChild(div2.getDiv());
 
-        this.setHTML(div1.outerHTML);
+        this.setHTML(div1.getDiv().outerHTML);
     }
 
     private createProductsNav (): HTMLUListElement {
@@ -70,83 +69,94 @@ export class Products extends Container{
     }
 
     private createProductsContainers (): HTMLDivElement {
-        const productContainer       = document.createElement('div');
-        productContainer.id          = 'productsTabContent';
-        productContainer.className   = 'tab-content';
-        productContainer.innerHTML   = arrProducts.map((product, i) => {
-            const div       = document.createElement('div');
-            div.className   = `tab-pane fade show${i === 0 ? " active" : ""}`;
-            div.id          = product.id;
-            div.role        = 'tabpanel';
-            // div.ariaLabelledby = `${product.id}-tab`;
-            div.appendChild(this.createCarousel(product, i));
-            
-            return div.outerHTML;
-        }).join('');
-        return productContainer;
+        const productContainer = new DivElement({
+            id              : 'productsTabContent',
+            className       : 'row',
+            ariaAttributes  : [{rol: 'tabpanel'}]
+        });
+
+        productContainer.addLastChild(
+            arrProducts.map((product, i) => {
+                const div = new DivElement({
+                    id              : product.id,
+                    className       : `tab-pane fade show${i === 0 ? " active" : ""}`,
+                    ariaAttributes  : [{rol: 'tabpanel'}]
+                });
+                // div.ariaLabelledby = `${product.id}-tab`;
+                div.addLastChild(this.createCarousel(product, i));            
+            return div.getDiv().outerHTML;
+        }).join(''));
+
+        return productContainer.getDiv();
     }
 
     private createCarousel (product: ArrProduct, i: number): HTMLDivElement {
-        const carouselContainer       = document.createElement('div');
-        carouselContainer.className   = 'row';
-        carouselContainer.innerHTML   = product.cards.map((card, j) => {
-            const cardContainer                 = document.createElement('div');
-            cardContainer.className             = 'col-12 col-md-6 col-lg-4';
+        const carouselContainer = new DivElement({className: 'row'});
+        
+        carouselContainer.addLastChild(
+            product.cards.map((card, j) => {
+                const cardContainer = new DivElement({className: 'col-12 col-md-6 col-lg-4'});
 
-            const productCard                   = document.createElement('div');
-            productCard.className               = 'card product-card';
+                const productCard   = new DivElement({className: 'card product-card'});
 
-            const carouselContainer             = document.createElement('div');
-            carouselContainer.id                = `carousel-${product.id}-product${j + 1}`;
-            carouselContainer.className         = 'carousel slide';
-            carouselContainer.dataset.bsRide    = 'carousel';
+                const carousel      = new DivElement({
+                    id              : `carousel-${product.id}-product${j + 1}`,
+                    className       : 'carousel slide',
+                    dataBsAttributes: [{ride: 'carousel'}]
+                });
 
-            carouselContainer.appendChild(this.createCarouselImages(product, card, j));
-            carouselContainer.appendChild(this.createCarouselButtons(carouselContainer.id, 'prev'));
-            carouselContainer.appendChild(this.createCarouselButtons(carouselContainer.id, 'next'));
+                carousel.addLastChild(this.createCarouselImages(product, card, j));
+                carousel.addLastChild(this.createCarouselButtons(carousel.getID()!, 'prev'));
+                carousel.addLastChild(this.createCarouselButtons(carousel.getID()!, 'next'));
 
-            productCard.appendChild(carouselContainer);
+                productCard.addLastChild(carousel.getDiv());
 
-            const cardBody          = document.createElement('div');
-            cardBody.className      = 'card-body';
+                const cardBody = new DivElement({className: 'card-body'});
+            
+                const cardTitle = new DivElement({
+                    className: 'card-title', 
+                    text: card.title
+                });
+            
+                const cardText          = document.createElement('p');
+                cardText.className      = 'card-text';
+                cardText.textContent    = card.description;
 
-            const cardTitle         = document.createElement('h5');
-            cardTitle.className     = 'card-title';
-            cardTitle.textContent   = card.title;
+                cardBody.addLastChild(cardTitle.getDiv());
+                cardBody.addLastChild(cardText);
 
-            const cardText          = document.createElement('p');
-            cardText.className      = 'card-text';
-            cardText.textContent    = card.description;
+                productCard.addLastChild(cardBody.getDiv());
 
-            cardBody.appendChild(cardTitle);
-            cardBody.appendChild(cardText);
+                cardContainer.addLastChild(productCard.getDiv());
 
-            productCard.appendChild(cardBody);
+                return cardContainer.getDiv().outerHTML;
+            }).join('')
+        );
 
-            cardContainer.appendChild(productCard);
-
-            return cardContainer.outerHTML;
-        }).join('');
-        return carouselContainer;
+        return carouselContainer.getDiv();
     }
 
     private createCarouselImages (product: ArrProduct, card: ProductCard, j: number): HTMLDivElement {
-        const carouselImg       = document.createElement('div');
-        carouselImg.className   = 'carousel-inner';
-        carouselImg.innerHTML   = card.carouselImages.map((_, k) => {
-            const div       = document.createElement('div');
-            div.className   = `carousel-item${k === 0 ? ' active' : ''}`;
+        const carouselImg = new DivElement({
+            className: 'carousel-inner'
+        });
+        carouselImg.addLastChild(
+            card.carouselImages.map((_, k) => {
+                const div = new DivElement({
+                    className: `carousel-item${k === 0 ? ' active' : ''}`
+                });
 
-            const img       = document.createElement('img');
-            img.src         = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
-            img.className   = 'd-block w-100';
-            img.alt         = `Imagen ${k + 1}`;
+                const img       = document.createElement('img');
+                img.src         = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
+                img.className   = 'd-block w-100';
+                img.alt         = `Imagen ${k + 1}`;
 
-            div.appendChild(img);
+                div.addLastChild(img);
 
-            return div.outerHTML;
-        }).join('');
-        return carouselImg;
+                return div.getDiv().outerHTML;
+            }).join('')
+        );
+        return carouselImg.getDiv();
     }
 
     private createCarouselButtons (id: string, prevOrNext: 'prev' | 'next'): HTMLButtonElement {

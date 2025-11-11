@@ -22,7 +22,7 @@ export class PayMethod extends Container{
     private createPayMethodsList (): HTMLUListElement {
         const ul        = document.createElement('ul');
         ul.className    = 'list-unstyled';
-        ul.innerHTML    = arrPayMethods.map((method) => {
+        ul.innerHTML    = arrPayMethods.map(method => {
             const li        = document.createElement('li');
             li.textContent  = `- ${method}`;
             return li.outerHTML;

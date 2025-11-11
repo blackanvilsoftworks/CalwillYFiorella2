@@ -3,6 +3,7 @@ import { ButtonElement } from "./Button.js";
 
 export class BaseElements {
     private element: HTMLElement;
+    private id: string | undefined;
 
     constructor (element: string, {
             id,
@@ -19,7 +20,10 @@ export class BaseElements {
                 this.element = document.createElement('div');
         }
 
-        if (id)         this.element.id          = id;
+        if (id) {
+            this.element.id = id;
+            this.id = id;
+        }
         if (className)  this.element.className   = className;
     
         if (dataBsAttributes) {
@@ -43,6 +47,8 @@ export class BaseElements {
     }
 
     protected getElement () { return this.element }
+
+    public getID () { return this.id; }
 
     public addFirstChild (e: HTMLElement | string): void {
         if (typeof e === 'string') {

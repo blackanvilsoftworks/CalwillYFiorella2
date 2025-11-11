@@ -15,10 +15,10 @@ export class DivElement extends BaseElements{
         }: iDivElement) {
         super('div', {id, className, text, dataBsAttributes, ariaAttributes});
         
-        this.div                    = this.getElement() as HTMLDivElement;
+        this.div = this.getElement() as HTMLDivElement;
         
-        this.div.contentEditable    = contenteditable   ?? 'false';
-        this.div.spellcheck         = spellcheck        ?? false;
+        if (contenteditable)    this.div.contentEditable    = contenteditable;
+        if (spellcheck)         this.div.spellcheck         = spellcheck;
     }
 
     public getDiv (): HTMLDivElement {

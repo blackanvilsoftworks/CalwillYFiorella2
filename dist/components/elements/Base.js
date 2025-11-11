@@ -6,8 +6,10 @@ export class BaseElements {
             default:
                 this.element = document.createElement('div');
         }
-        if (id)
+        if (id) {
             this.element.id = id;
+            this.id = id;
+        }
         if (className)
             this.element.className = className;
         if (dataBsAttributes) {
@@ -36,6 +38,7 @@ export class BaseElements {
             this.element.appendChild(document.createTextNode(text));
     }
     getElement() { return this.element; }
+    getID() { return this.id; }
     addFirstChild(e) {
         if (typeof e === 'string') {
             this.element.prepend(document.createTextNode(e));

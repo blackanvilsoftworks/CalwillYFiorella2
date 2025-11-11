@@ -1,6 +1,7 @@
 export interface iAriaAttributes {
-    label?     : string;
-    controls?  : string;
-    expanded?  : string;
-    selected?  : string;
+    label?      : string;
+    controls?   : string;
+    expanded?   : string;
+    selected?   : string;
+    rol?        : string;
 }
