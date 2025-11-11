@@ -42,7 +42,7 @@ export class BaseElements {
         if (text) this.element.appendChild(document.createTextNode(text));
     }
 
-    public getElement () { return this.element }
+    protected getElement () { return this.element }
 
     public addFirstChild (e: HTMLElement | string): void {
         if (typeof e === 'string') {
