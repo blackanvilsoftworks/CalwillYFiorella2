@@ -75,7 +75,20 @@ export class Products extends Container{
             ariaAttributes  : [{rol: 'tabpanel'}]
         });
 
-        productContainer.addLastChild(
+        // productContainer.addLastChild(
+        //     arrProducts.map((product, i) => {
+        //         const div = new DivElement({
+        //             id              : product.id,
+        //             className       : `tab-pane fade show${i === 0 ? " active" : ""}`,
+        //             ariaAttributes  : [{rol: 'tabpanel'}]
+        //         });
+        //         // div.ariaLabelledby = `${product.id}-tab`;
+        //         div.addLastChild(this.createCarousel(product, i));            
+        //         return div.getDiv().outerHTML;
+        //     }).join('')
+        // );
+
+        productContainer.getDiv().innerHTML = 
             arrProducts.map((product, i) => {
                 const div = new DivElement({
                     id              : product.id,
@@ -84,8 +97,8 @@ export class Products extends Container{
                 });
                 // div.ariaLabelledby = `${product.id}-tab`;
                 div.addLastChild(this.createCarousel(product, i));            
-            return div.getDiv().outerHTML;
-        }).join(''));
+                return div.getDiv().outerHTML;
+            }).join('');
 
         return productContainer.getDiv();
     }
@@ -160,7 +173,7 @@ export class Products extends Container{
     }
 
     private createCarouselButtons (id: string, prevOrNext: 'prev' | 'next'): HTMLButtonElement {
-        const btn               = new ButtonElement({
+        const btn = new ButtonElement({
             className       : `carousel-control-${prevOrNext}`,
             dataBsAttributes: [{
                 target  : `#${id}`,

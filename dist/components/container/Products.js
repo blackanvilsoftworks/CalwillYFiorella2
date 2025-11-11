@@ -56,16 +56,29 @@ export class Products extends Container {
             className: 'row',
             ariaAttributes: [{ rol: 'tabpanel' }]
         });
-        productContainer.addLastChild(arrProducts.map((product, i) => {
-            const div = new DivElement({
-                id: product.id,
-                className: `tab-pane fade show${i === 0 ? " active" : ""}`,
-                ariaAttributes: [{ rol: 'tabpanel' }]
-            });
-            // div.ariaLabelledby = `${product.id}-tab`;
-            div.addLastChild(this.createCarousel(product, i));
-            return div.getDiv().outerHTML;
-        }).join(''));
+        // productContainer.addLastChild(
+        //     arrProducts.map((product, i) => {
+        //         const div = new DivElement({
+        //             id              : product.id,
+        //             className       : `tab-pane fade show${i === 0 ? " active" : ""}`,
+        //             ariaAttributes  : [{rol: 'tabpanel'}]
+        //         });
+        //         // div.ariaLabelledby = `${product.id}-tab`;
+        //         div.addLastChild(this.createCarousel(product, i));            
+        //         return div.getDiv().outerHTML;
+        //     }).join('')
+        // );
+        productContainer.getDiv().innerHTML =
+            arrProducts.map((product, i) => {
+                const div = new DivElement({
+                    id: product.id,
+                    className: `tab-pane fade show${i === 0 ? " active" : ""}`,
+                    ariaAttributes: [{ rol: 'tabpanel' }]
+                });
+                // div.ariaLabelledby = `${product.id}-tab`;
+                div.addLastChild(this.createCarousel(product, i));
+                return div.getDiv().outerHTML;
+            }).join('');
         return productContainer.getDiv();
     }
     createCarousel(product, i) {
