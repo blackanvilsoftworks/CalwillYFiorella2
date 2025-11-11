@@ -2,6 +2,7 @@ import { arrFeatures }          from '../../utils/arrays.js';
 import { createTitle }          from '../../utils/createTitle.js';
 
 import { Container }            from '../Container.js';
+import { DivElement } from '../elements/Div.js';
 import { FeatureBoxContainer }  from '../ui/FeatureBoxContainer.js';
 
 export class Feature extends Container {
@@ -23,28 +24,25 @@ export class Feature extends Container {
     }
 
     private createHTML (title: string, icon: string): void {
-        const div1      = document.createElement('div');
-        div1.className  = 'row justify-content-center';
+        const div1      = new DivElement({className: 'row justify-content-center'});
+        
+        const div2      = new DivElement({className: 'col-10'});
 
-        const div2      = document.createElement('div');
-        div2.className  = 'col-10';
-
-        const div3      = document.createElement('div');
-        div3.className  = 'row';
-
+        const div3      = new DivElement({className: 'row'});
+        
         const h2        = document.createElement('h2');
         h2.className    = 'section-title text-center mb-4';
         h2.appendChild(createTitle(title, icon));
 
-        div3.appendChild(h2);
+        div3.addLastChild(h2);
 
-        this.featureBoxes.forEach((box) => {
-            div3.appendChild(box);
+        this.featureBoxes.forEach(box => {
+            div3.addLastChild(box);
         });
 
-        div2.appendChild(div3);
-        div1.appendChild(div2);
+        div2.addLastChild(div3.getDiv());
+        div1.addLastChild(div2.getDiv());
 
-        this.setHTML(div1.outerHTML);
+        this.setHTML(div1.getDiv().outerHTML);
     }
 }
