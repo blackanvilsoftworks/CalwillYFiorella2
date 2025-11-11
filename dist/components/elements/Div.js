@@ -6,7 +6,7 @@ export class DivElement extends BaseElements {
         this.div.contentEditable = contenteditable !== null && contenteditable !== void 0 ? contenteditable : 'false';
         this.div.spellcheck = spellcheck !== null && spellcheck !== void 0 ? spellcheck : false;
     }
-    getButton() {
+    getDiv() {
         try {
             return this.div;
         }

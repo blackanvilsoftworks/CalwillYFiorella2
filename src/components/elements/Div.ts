@@ -21,7 +21,7 @@ export class DivElement extends BaseElements{
         this.div.spellcheck         = spellcheck        ?? false;
     }
 
-    public getButton (): HTMLDivElement {
+    public getDiv (): HTMLDivElement {
         try {
             return this.div;
         } catch (error) {

@@ -5,6 +5,7 @@ import {
     globalInfo, 
     imagesPath 
 } from '../../utils/constants.js';
+import { DivElement } from '../elements/Div.js';
 
 export class AboutUs extends Container{
     
@@ -14,31 +15,26 @@ export class AboutUs extends Container{
     }
 
     private createHTML (title: string, icon: string): void {
-        const div1          = document.createElement('div');
-        div1.className      = 'row justify-content-center';
+        const div1 = new DivElement({className: 'row justify-content-center'});
 
-        const div2          = document.createElement('div');
-        div2.className      = 'col-10';
+        const div2 = new DivElement({className: 'col-10'});
 
-        const div3          = document.createElement('div');
-        div3.className      = 'row';
+        const div3 = new DivElement({className: 'row'});
 
         const h2            = document.createElement('h2');
         h2.className        = 'col-12';
         h2.appendChild(createTitle(title, icon));
 
-        const div3_1        = document.createElement('div');
-        div3_1.className    = 'col-12 col-md-5 col-lg-5 align-content-center';
+        const div3_1 = new DivElement({className: 'col-12 col-md-5 col-lg-5 align-content-center'});
 
         const img           = document.createElement('img');
         img.src             = `${imagesPath}logo.jpg`;
         img.className       = 'img-fluid';
         img.alt             = `${globalInfo.name} Logo`;
-        div3_1.appendChild(img);
+        div3_1.addLastChild(img);
 
-        const div3_2        = document.createElement('div');
-        div3_2.className    = 'col-12 col-md-7 col-lg-7 px-5 align-self-center';
-
+        const div3_2 = new DivElement({className: 'col-12 col-md-7 col-lg-7 px-5 align-self-center'});
+        
         const p1            = document.createElement('p');
         p1.textContent      = 'En Calwill & Fiorella nos especializamos en la fabricación de calzado infantil de la más alta calidad, con diseños únicos y materiales sostenibles.';
         
@@ -51,18 +47,18 @@ export class AboutUs extends Container{
         const p4            = document.createElement('p');
         p4.textContent      = 'Nuestra misión es proporcionar calzado cómodo, durable y a la moda que satisfaga las necesidades de nuestros clientes.';
         
-        div3_2.appendChild(p1);
-        div3_2.appendChild(p2);
-        div3_2.appendChild(p3);
-        div3_2.appendChild(p4);
+        div3_2.addLastChild(p1);
+        div3_2.addLastChild(p2);
+        div3_2.addLastChild(p3);
+        div3_2.addLastChild(p4);
 
-        div3.appendChild(h2);
-        div3.appendChild(div3_1);
-        div3.appendChild(div3_2);
+        div3.addLastChild(h2);
+        div3.addLastChild(div3_1.getDiv());
+        div3.addLastChild(div3_2.getDiv());
 
-        div2.appendChild(div3);
-        div1.appendChild(div2);
+        div2.addLastChild(div3.getDiv());
+        div1.addLastChild(div2.getDiv());
 
-        this.setHTML(div1.outerHTML);
+        this.setHTML(div1.getDiv().outerHTML);
     }
 }
