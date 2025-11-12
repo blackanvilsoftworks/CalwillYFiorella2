@@ -138,51 +138,49 @@ export class ContactForm extends Container {
     }
 
     private createContactInfoCard (): HTMLDivElement {
-        const contactInfoCard = new DivElement({className: 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto'});
+        const contactInfoCard   = new DivElement({className: 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto'});
 
-        const cardHeader        = document.createElement('div');
-        cardHeader.className    = 'card h-100';
-
-        const cardBody          = document.createElement('div');
-        cardBody.className      = 'card-body';
-
+        const cardHeader        = new DivElement({className: 'card h-100'});
+        
+        const cardBody          = new DivElement({className: 'card-body'});
+        
         const cardTitle         = document.createElement('h5');
         cardTitle.className     = 'card-title';
         cardTitle.textContent   = 'Información de Contacto';
 
-        const container         = document.createElement('div');
-        container.className     = 'container';
-        container.innerHTML     = this.createContactInfoCardItems();
+        const container         = new DivElement({className: 'container'});
+        container.addLastChild(this.createContactInfoCardItems(), 'innerHTML');
 
-        cardBody.append(cardTitle);
-        cardBody.append(container);
-        cardHeader.append(cardBody);
-        contactInfoCard.addLastChild([cardHeader]);
+        cardBody.addLastChild([
+            cardTitle,
+            container.getDiv()
+        ]);
+        cardHeader.addLastChild([cardBody.getDiv()]);
+        contactInfoCard.addLastChild([cardHeader.getDiv()]);
 
         return contactInfoCard.getDiv();
     };
 
     private createContactInfoCardItems (): string {
         return arrInfoCardContent.map(item => {
-            const container     = document.createElement('div');
-            container.className = 'row mb-2';
+            const container = new DivElement({className: 'row mb-2'});
             
-            const iconDiv       = document.createElement('div');
-            iconDiv.className   = 'col-1';
+            const iconDiv   = new DivElement({className: 'col-1'});
+            
+            const icon      = document.createElement('i');
+            icon.className  = item.icon;
 
-            const icon = document.createElement('i');
-            icon.className = item.icon;
+            iconDiv.addLastChild([icon]);
 
-            iconDiv.append(icon);
+            const infoDiv   = new DivElement({
+                className: 'col-11', 
+                text: `${item.type}: ${item.value}`
+            });
 
-            const infoDiv       = document.createElement('div');
-            infoDiv.className   = 'col-11';
-            infoDiv.textContent = `${item.type}: ${item.value}`;
+            container.addLastChild([iconDiv.getDiv()]);
+            container.addLastChild([infoDiv.getDiv()]);
 
-            container.append(iconDiv);
-            container.append(infoDiv);
-
-            return container.outerHTML;
+            return container.getDiv().outerHTML;
         }).join('');
     };
 }
