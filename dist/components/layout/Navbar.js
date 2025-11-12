@@ -1,6 +1,7 @@
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
 import { ButtonElement } from '../elements/Button.js';
+import { DivElement } from '../elements/Div.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -26,8 +27,7 @@ export class Navbar {
     }
     createHTML() {
         var _a;
-        const div1 = document.createElement('div');
-        div1.className = 'container-fluid';
+        const div1 = new DivElement({ className: 'container-fluid' });
         const a = document.createElement('a');
         a.className = 'navbar-brand';
         a.href = `#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}`;
@@ -41,7 +41,7 @@ export class Navbar {
         span.textContent = globalInfo.name.toUpperCase();
         a.appendChild(img);
         a.appendChild(span);
-        div1.appendChild(a);
+        div1.addLastChild([a]);
         const button = new ButtonElement({
             className: 'navbar-toggler border-0',
             type: 'button',
@@ -57,14 +57,15 @@ export class Navbar {
         });
         const spanIcon = document.createElement('span');
         spanIcon.className = 'navbar-toggler-icon';
-        button.addFirstChild([spanIcon]);
-        div1.appendChild(button.getButton());
-        const div2 = document.createElement('div');
-        div2.className = 'collapse navbar-collapse text-center ps-auto';
-        div2.id = 'navbarNav';
-        div2.appendChild(this.createNavbarItems());
-        div1.appendChild(div2);
-        return div1.outerHTML;
+        button.addLastChild([spanIcon]);
+        div1.addLastChild([button.getButton()]);
+        const div2 = new DivElement({
+            id: 'navbarNav',
+            className: 'collapse navbar-collapse text-center ps-auto'
+        });
+        div2.addLastChild([this.createNavbarItems()]);
+        div1.addLastChild([div2.getDiv()]);
+        return div1.getDiv().outerHTML;
     }
     createNavbarItems() {
         const ul = document.createElement('ul');

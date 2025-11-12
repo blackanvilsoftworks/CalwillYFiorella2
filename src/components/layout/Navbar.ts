@@ -2,6 +2,7 @@ import { globalInfo }       from '../../utils/constants.js';
 import { arrContainers }    from '../../utils/arrays.js';
 import { ArrContainer }     from '../../interfaces/ArrContainer.js';
 import { ButtonElement } from '../elements/Button.js';
+import { DivElement } from '../elements/Div.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -31,8 +32,7 @@ export class Navbar {
     }
     
     private createHTML (): string {
-        const div1      = document.createElement('div');
-        div1.className  = 'container-fluid';
+        const div1      = new DivElement({className : 'container-fluid'});
 
         const a     = document.createElement('a');
         a.className = 'navbar-brand';
@@ -50,7 +50,7 @@ export class Navbar {
 
         a.appendChild(img);
         a.appendChild(span);
-        div1.appendChild(a);
+        div1.addLastChild([a]);
 
         const button = new ButtonElement({
             className       : 'navbar-toggler border-0',
@@ -69,16 +69,17 @@ export class Navbar {
         const spanIcon      = document.createElement('span');
         spanIcon.className  = 'navbar-toggler-icon';
 
-        button.addFirstChild([spanIcon]);
-        div1.appendChild(button.getButton());
+        button.addLastChild([spanIcon]);
+        div1.addLastChild([button.getButton()]);
 
-        const div2      = document.createElement('div');
-        div2.className  = 'collapse navbar-collapse text-center ps-auto';
-        div2.id         = 'navbarNav';
-        div2.appendChild(this.createNavbarItems());
-        div1.appendChild(div2);
+        const div2      = new DivElement({
+            id          : 'navbarNav',
+            className   : 'collapse navbar-collapse text-center ps-auto'
+        });
+        div2.addLastChild([this.createNavbarItems()]);
+        div1.addLastChild([div2.getDiv()]);
 
-        return div1.outerHTML;
+        return div1.getDiv().outerHTML;
     }
 
     private createNavbarItems (): HTMLUListElement {

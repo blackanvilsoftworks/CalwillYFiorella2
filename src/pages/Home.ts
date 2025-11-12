@@ -16,7 +16,7 @@ import { PayMethod }        from '../components/container/PayMethod.js';
 export function Home(): HTMLDivElement {
     const container = new DivElement({id: 'main_container'});
     
-    container.addLastChild([
+    container.addFirstChild([
         new Navbar        (arrContainers[0]!.id, arrContainers[0]!.className).getContainer(),
         new Hero          (arrContainers[1]!.id, arrContainers[1]!.className).getContainer(),
         new AboutUs       (arrContainers[2]!.id, arrContainers[2]!.className, arrContainers[2]!.title, arrContainers[2]!.icon).getContainer(),
