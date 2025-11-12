@@ -39,20 +39,30 @@ export class BaseElements {
     }
     getElement() { return this.element; }
     getID() { return this.id; }
-    addFirstChild(e) {
+    addFirstChild(e, t) {
         if (typeof e === 'string') {
-            this.element.prepend(document.createTextNode(e));
+            if (t && t === 'innerHTML') {
+                this.element.innerHTML = e;
+            }
+            else {
+                this.element.prepend(e);
+            }
         }
         else {
-            this.element.prepend(e);
+            this.element.prepend(...e);
         }
     }
-    addLastChild(e) {
+    addLastChild(e, t) {
         if (typeof e === 'string') {
-            this.element.appendChild(document.createTextNode(e));
+            if (t && t === 'innerHTML') {
+                this.element.innerHTML = e;
+            }
+            else {
+                this.element.append(e);
+            }
         }
         else {
-            this.element.appendChild(e);
+            this.element.append(...e);
         }
     }
 }

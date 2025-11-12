@@ -34,14 +34,14 @@ export class Feature extends Container {
         h2.className    = 'section-title text-center mb-4';
         h2.appendChild(createTitle(title, icon));
 
-        div3.addLastChild(h2);
+        div3.addLastChild([h2]);
 
         this.featureBoxes.forEach(box => {
-            div3.addLastChild(box);
+            div3.addLastChild([box]);
         });
 
-        div2.addLastChild(div3.getDiv());
-        div1.addLastChild(div2.getDiv());
+        div2.addLastChild([div3.getDiv()]);
+        div1.addLastChild([div2.getDiv()]);
 
         this.setHTML(div1.getDiv().outerHTML);
     }

@@ -57,7 +57,7 @@ export class Navbar {
         });
         const spanIcon = document.createElement('span');
         spanIcon.className = 'navbar-toggler-icon';
-        button.addFirstChild(spanIcon);
+        button.addFirstChild([spanIcon]);
         div1.appendChild(button.getButton());
         const div2 = document.createElement('div');
         div2.className = 'collapse navbar-collapse text-center ps-auto';

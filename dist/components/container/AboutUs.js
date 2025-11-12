@@ -19,7 +19,7 @@ export class AboutUs extends Container {
         img.src = `${imagesPath}logo.jpg`;
         img.className = 'img-fluid';
         img.alt = `${globalInfo.name} Logo`;
-        div3_1.addLastChild(img);
+        div3_1.addLastChild([img]);
         const div3_2 = new DivElement({ className: 'col-12 col-md-7 col-lg-7 px-5 align-self-center' });
         const p1 = document.createElement('p');
         p1.textContent = 'En Calwill & Fiorella nos especializamos en la fabricación de calzado infantil de la más alta calidad, con diseños únicos y materiales sostenibles.';
@@ -29,15 +29,19 @@ export class AboutUs extends Container {
         p3.textContent = 'Además, somos distribuidores de calzado para hombres y mujeres, ofreciendo una amplia variedad de estilos y tallas para toda la familia.';
         const p4 = document.createElement('p');
         p4.textContent = 'Nuestra misión es proporcionar calzado cómodo, durable y a la moda que satisfaga las necesidades de nuestros clientes.';
-        div3_2.addLastChild(p1);
-        div3_2.addLastChild(p2);
-        div3_2.addLastChild(p3);
-        div3_2.addLastChild(p4);
-        div3.addLastChild(h2);
-        div3.addLastChild(div3_1.getDiv());
-        div3.addLastChild(div3_2.getDiv());
-        div2.addLastChild(div3.getDiv());
-        div1.addLastChild(div2.getDiv());
+        div3_2.addLastChild([
+            p1,
+            p2,
+            p3,
+            p4
+        ]);
+        div3.addLastChild([
+            h2,
+            div3_1.getDiv(),
+            div3_2.getDiv()
+        ]);
+        div2.addLastChild([div3.getDiv()]);
+        div1.addLastChild([div2.getDiv()]);
         this.setHTML(div1.getDiv().outerHTML);
     }
 }

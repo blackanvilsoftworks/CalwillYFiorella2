@@ -1,4 +1,5 @@
 import { iBaseElement } from "../../interfaces/elements/iBaseElement.js";
+import { tBaseChild } from "../../types/tBaseChild.js";
 import { ButtonElement } from "./Button.js";
 
 export class BaseElements {
@@ -50,19 +51,27 @@ export class BaseElements {
 
     public getID () { return this.id; }
 
-    public addFirstChild (e: HTMLElement | string): void {
+    public addFirstChild (e: tBaseChild, t?: 'innerHTML'): void {
         if (typeof e === 'string') {
-            this.element.prepend(document.createTextNode(e));
+            if (t && t === 'innerHTML') {
+                this.element.innerHTML = e;
+            } else {
+                this.element.prepend(e);
+            }
         } else {
-            this.element.prepend(e);
+            this.element.prepend(...e);
         }
     }
 
-    public addLastChild (e: HTMLElement | string): void {
+    public addLastChild (e: tBaseChild, t?: 'innerHTML'): void {
         if (typeof e === 'string') {
-            this.element.appendChild(document.createTextNode(e));
+            if (t && t === 'innerHTML') {
+                this.element.innerHTML = e;
+            } else {
+                this.element.append(e);
+            }
         } else {
-            this.element.appendChild(e);
+            this.element.append(...e);
         }
     }
 }

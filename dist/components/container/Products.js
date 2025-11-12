@@ -16,11 +16,13 @@ export class Products extends Container {
         const h = document.createElement('h2');
         h.className = 'text-center';
         h.appendChild(createTitle(title, icon));
-        div3.addLastChild(h);
-        div3.addLastChild(this.createProductsNav());
-        div3.addLastChild(this.createProductsContainers());
-        div2.addLastChild(div3.getDiv());
-        div1.addLastChild(div2.getDiv());
+        div3.addLastChild([
+            h,
+            this.createProductsNav(),
+            this.createProductsContainers()
+        ]);
+        div2.addLastChild([div3.getDiv()]);
+        div1.addLastChild([div2.getDiv()]);
         this.setHTML(div1.getDiv().outerHTML);
     }
     createProductsNav() {
@@ -53,37 +55,24 @@ export class Products extends Container {
     createProductsContainers() {
         const productContainer = new DivElement({
             id: 'productsTabContent',
-            className: 'row',
+            className: 'tab-content',
             ariaAttributes: [{ rol: 'tabpanel' }]
         });
-        // productContainer.addLastChild(
-        //     arrProducts.map((product, i) => {
-        //         const div = new DivElement({
-        //             id              : product.id,
-        //             className       : `tab-pane fade show${i === 0 ? " active" : ""}`,
-        //             ariaAttributes  : [{rol: 'tabpanel'}]
-        //         });
-        //         // div.ariaLabelledby = `${product.id}-tab`;
-        //         div.addLastChild(this.createCarousel(product, i));            
-        //         return div.getDiv().outerHTML;
-        //     }).join('')
-        // );
-        productContainer.getDiv().innerHTML =
-            arrProducts.map((product, i) => {
-                const div = new DivElement({
-                    id: product.id,
-                    className: `tab-pane fade show${i === 0 ? " active" : ""}`,
-                    ariaAttributes: [{ rol: 'tabpanel' }]
-                });
-                // div.ariaLabelledby = `${product.id}-tab`;
-                div.addLastChild(this.createCarousel(product, i));
-                return div.getDiv().outerHTML;
-            }).join('');
+        arrProducts.forEach((product, i) => {
+            const div = new DivElement({
+                id: product.id,
+                className: `tab-pane fade show${i === 0 ? " active" : ""}`,
+                ariaAttributes: [{ rol: 'tabpanel' }]
+            });
+            // div.ariaLabelledby = `${product.id}-tab`;
+            div.addLastChild([this.createCarousel(product, i)]);
+            productContainer.addLastChild([div.getDiv()]);
+        });
         return productContainer.getDiv();
     }
     createCarousel(product, i) {
         const carouselContainer = new DivElement({ className: 'row' });
-        carouselContainer.addLastChild(product.cards.map((card, j) => {
+        product.cards.forEach((card, j) => {
             const cardContainer = new DivElement({ className: 'col-12 col-md-6 col-lg-4' });
             const productCard = new DivElement({ className: 'card product-card' });
             const carousel = new DivElement({
@@ -91,10 +80,12 @@ export class Products extends Container {
                 className: 'carousel slide',
                 dataBsAttributes: [{ ride: 'carousel' }]
             });
-            carousel.addLastChild(this.createCarouselImages(product, card, j));
-            carousel.addLastChild(this.createCarouselButtons(carousel.getID(), 'prev'));
-            carousel.addLastChild(this.createCarouselButtons(carousel.getID(), 'next'));
-            productCard.addLastChild(carousel.getDiv());
+            carousel.addLastChild([
+                this.createCarouselImages(product, card, j),
+                this.createCarouselButtons(carousel.getID(), 'prev'),
+                this.createCarouselButtons(carousel.getID(), 'next')
+            ]);
+            productCard.addLastChild([carousel.getDiv()]);
             const cardBody = new DivElement({ className: 'card-body' });
             const cardTitle = new DivElement({
                 className: 'card-title',
@@ -103,19 +94,21 @@ export class Products extends Container {
             const cardText = document.createElement('p');
             cardText.className = 'card-text';
             cardText.textContent = card.description;
-            cardBody.addLastChild(cardTitle.getDiv());
-            cardBody.addLastChild(cardText);
-            productCard.addLastChild(cardBody.getDiv());
-            cardContainer.addLastChild(productCard.getDiv());
-            return cardContainer.getDiv().outerHTML;
-        }).join(''));
+            cardBody.addLastChild([
+                cardTitle.getDiv(),
+                cardText
+            ]);
+            productCard.addLastChild([cardBody.getDiv()]);
+            cardContainer.addLastChild([productCard.getDiv()]);
+            carouselContainer.addLastChild([cardContainer.getDiv()]);
+        });
         return carouselContainer.getDiv();
     }
     createCarouselImages(product, card, j) {
         const carouselImg = new DivElement({
             className: 'carousel-inner'
         });
-        carouselImg.addLastChild(card.carouselImages.map((_, k) => {
+        card.carouselImages.forEach((_, k) => {
             const div = new DivElement({
                 className: `carousel-item${k === 0 ? ' active' : ''}`
             });
@@ -123,9 +116,9 @@ export class Products extends Container {
             img.src = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
             img.className = 'd-block w-100';
             img.alt = `Imagen ${k + 1}`;
-            div.addLastChild(img);
-            return div.getDiv().outerHTML;
-        }).join(''));
+            div.addLastChild([img]);
+            carouselImg.addLastChild([div.getDiv()]);
+        });
         return carouselImg.getDiv();
     }
     createCarouselButtons(id, prevOrNext) {
@@ -142,8 +135,10 @@ export class Products extends Container {
         const span2 = document.createElement('span');
         span2.className = 'visually-hidden';
         span2.textContent = prevOrNext === 'next' ? 'Next' : 'Previous';
-        btn.addLastChild(span1);
-        btn.addLastChild(span2);
+        btn.addLastChild([
+            span1,
+            span2
+        ]);
         return btn.getButton();
     }
 }

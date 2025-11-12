@@ -63,7 +63,7 @@ export class Footer {
             });
             const icon = document.createElement('i');
             icon.className = media.icon;
-            button.addFirstChild(icon);
+            button.addFirstChild([icon]);
             div.appendChild(button.getButton());
             return div.outerHTML;
         }).join('');
