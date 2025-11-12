@@ -17,7 +17,6 @@ export class ButtonElement extends BaseElements{
         this.button         = this.getElement() as HTMLButtonElement;
 
         this.button.type    = type ?? 'button';
-
     }
 
     public getButton (): HTMLButtonElement {

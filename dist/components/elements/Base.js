@@ -3,8 +3,10 @@ export class BaseElements {
         switch (element) {
             case 'button':
                 this.element = document.createElement('button');
+                break;
             default:
                 this.element = document.createElement('div');
+                break;
         }
         if (id) {
             this.id = id;
