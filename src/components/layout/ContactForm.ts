@@ -3,6 +3,7 @@ import { createTitle }          from '../../utils/createTitle.js';
 import { arrInfoCardContent }   from '../../utils/arrays.js';
 import { Container }            from '../Container.js';
 import { ButtonElement } from '../elements/Button.js';
+import { DivElement } from '../elements/Div.js';
 
 export class ContactForm extends Container {
     constructor (id: string, className: string, title: string, icon: string) {
@@ -13,21 +14,21 @@ export class ContactForm extends Container {
     private createHTML (title: string, icon: string): void {
         const titleElement = document.createElement('h2');
         titleElement.className = 'text-center mb-4';
-        titleElement.appendChild(createTitle(title, icon));
+        titleElement.append(createTitle(title, icon));
 
-        const contactForm = document.createElement('div');
-        contactForm.className = 'row';
-        contactForm.id = 'form-row';
-        contactForm.appendChild(this.createContactForm());
+        const contactForm = new DivElement({
+            id          : 'form-row',
+            className   : 'row'
+        });
+        contactForm.addLastChild([this.createContactForm()]);
 
-        const contactInfoCard = document.createElement('div');
-        contactInfoCard.className = 'row mt-3';
-        contactInfoCard.appendChild(this.createContactInfoCard());
+        const contactInfoCard = new DivElement({className: 'row mt-3'});
+        contactInfoCard.addLastChild([this.createContactInfoCard()]);
 
         const html = `
             ${titleElement.outerHTML}
-            ${contactForm.outerHTML}
-            ${contactInfoCard.outerHTML}`;
+            ${contactForm.getDiv().outerHTML}
+            ${contactInfoCard.getDiv().outerHTML}`;
         this.setHTML(html);
     }
     
@@ -58,13 +59,12 @@ export class ContactForm extends Container {
         input4.value    = 'false';
 
         // Campos ocultos de FormSubmit
-        form.appendChild(input1);
-        form.appendChild(input2);
-        form.appendChild(input3);
-        form.appendChild(input4);
+        form.append(input1);
+        form.append(input2);
+        form.append(input3);
+        form.append(input4);
 
-        const div1              = document.createElement('div');
-        div1.className          = 'col-12 col-md-6 mb-3 px-1';
+        const div1 = new DivElement({className: 'col-12 col-md-6 mb-3 px-1'});
         
         const label1            = document.createElement('label');
         label1.htmlFor          = 'name';
@@ -79,12 +79,13 @@ export class ContactForm extends Container {
         inputName.placeholder   = 'Solo letras';
         inputName.required      = true;
 
-        div1.appendChild(label1);
-        div1.appendChild(inputName);
-
-        const div2              = document.createElement('div');
-        div2.className          = 'col-12 col-md-6 mb-3 px-1';
-
+        div1.addLastChild([
+            label1,
+            inputName
+        ]);
+        
+        const div2 = new DivElement({className: 'col-12 col-md-6 mb-3 px-1'});
+        
         const label2            = document.createElement('label');
         label2.htmlFor          = 'phone-number';
         label2.className        = 'form-label';
@@ -98,11 +99,12 @@ export class ContactForm extends Container {
         inputPhone.placeholder  = 'Sin espacios ni guiones 1122223333';
         inputPhone.required     = true;
 
-        div2.appendChild(label2);
-        div2.appendChild(inputPhone);
+        div2.addLastChild([
+            label2,
+            inputPhone
+        ]);
 
-        const div3              = document.createElement('div');
-        div3.className          = 'col-12 mb-3';
+        const div3 = new DivElement({className: 'col-12 mb-3'});
 
         const label3            = document.createElement('label');
         label3.htmlFor          = 'message';
@@ -117,8 +119,10 @@ export class ContactForm extends Container {
         textarea.placeholder    = 'Recibirá una respuesta vía WhatsApp lo más pronto posible.';
         textarea.required       = true;
 
-        div3.appendChild(label3);
-        div3.appendChild(textarea);
+        div3.addLastChild([
+            label3,
+            textarea
+        ]);
 
         const submitButton          = new ButtonElement({
             text        : 'Enviar',
@@ -126,16 +130,15 @@ export class ContactForm extends Container {
             className   : 'btn btn-primary'
         });
 
-        form.appendChild(div1);
-        form.appendChild(div2);
-        form.appendChild(div3);
-        form.appendChild(submitButton.getButton());
+        form.append(div1.getDiv());
+        form.append(div2.getDiv());
+        form.append(div3.getDiv());
+        form.append(submitButton.getButton());
         return form;
     }
 
     private createContactInfoCard (): HTMLDivElement {
-        const contactInfoCard       = document.createElement('div');
-        contactInfoCard.className   = 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto';
+        const contactInfoCard = new DivElement({className: 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto'});
 
         const cardHeader        = document.createElement('div');
         cardHeader.className    = 'card h-100';
@@ -151,12 +154,12 @@ export class ContactForm extends Container {
         container.className     = 'container';
         container.innerHTML     = this.createContactInfoCardItems();
 
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(container);
-        cardHeader.appendChild(cardBody);
-        contactInfoCard.appendChild(cardHeader);
+        cardBody.append(cardTitle);
+        cardBody.append(container);
+        cardHeader.append(cardBody);
+        contactInfoCard.addLastChild([cardHeader]);
 
-        return contactInfoCard;
+        return contactInfoCard.getDiv();
     };
 
     private createContactInfoCardItems (): string {
@@ -166,14 +169,18 @@ export class ContactForm extends Container {
             
             const iconDiv       = document.createElement('div');
             iconDiv.className   = 'col-1';
-            iconDiv.innerHTML   = `<i class="${item.icon}"></i>`;
+
+            const icon = document.createElement('i');
+            icon.className = item.icon;
+
+            iconDiv.append(icon);
 
             const infoDiv       = document.createElement('div');
             infoDiv.className   = 'col-11';
             infoDiv.textContent = `${item.type}: ${item.value}`;
 
-            container.appendChild(iconDiv);
-            container.appendChild(infoDiv);
+            container.append(iconDiv);
+            container.append(infoDiv);
 
             return container.outerHTML;
         }).join('');

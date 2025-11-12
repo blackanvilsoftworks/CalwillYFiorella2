@@ -22,8 +22,8 @@ export class BaseElements {
         }
 
         if (id) {
-            this.element.id = id;
-            this.id = id;
+            this.id         = id;
+            this.element.id = this.id;
         }
         if (className)  this.element.className   = className;
     
@@ -44,7 +44,7 @@ export class BaseElements {
             });
         }
                                             
-        if (text) this.element.appendChild(document.createTextNode(text));
+        if (text) this.element.append(text);
     }
 
     protected getElement () { return this.element }
