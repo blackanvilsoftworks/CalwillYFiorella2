@@ -1,8 +1,7 @@
+import { DivElement } from "./elements/Div";
 export class Container {
     constructor(id, className) {
-        this.container = document.createElement('div');
-        this.container.id = id;
-        this.container.className = className;
+        this.container = new DivElement({ id, className }).getDiv();
     }
     getContainer() {
         try {
@@ -13,7 +12,7 @@ export class Container {
         }
         catch (error) {
             console.error(error);
-            return document.createElement('div');
+            return new DivElement({}).getDiv();
         }
     }
     setHTML(html) {

@@ -1,10 +1,10 @@
+import { DivElement } from "./elements/Div";
+
 export class Container {
     private container: HTMLDivElement;
     
     constructor (id: string, className: string) {
-        this.container              = document.createElement('div');
-        this.container.id           = id;
-        this.container.className    = className;
+        this.container = new DivElement({id, className}).getDiv();
     }
     
     public getContainer (): HTMLDivElement {
@@ -15,7 +15,7 @@ export class Container {
             return this.container;
         } catch (error) {
             console.error(error);
-            return document.createElement('div');
+            return new DivElement({}).getDiv();
         }
     }
 
