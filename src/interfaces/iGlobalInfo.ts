@@ -1,4 +1,4 @@
-export interface GlobalInfo {
+export interface iGlobalInfo {
     name        : string;
     phoneNumber : string;
     email       : string;

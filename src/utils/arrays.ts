@@ -1,12 +1,12 @@
 import { globalInfo }           from './constants.js';
-import { ArrContainer }         from '../interfaces/ArrContainer.js';
-import { ArrProduct }           from '../interfaces/ArrProduct.js';
-import { ArrFeature }           from '../interfaces/ArrFeature.js';
-import { ArrInfoCardContent }   from '../interfaces/ArrInfoCardContent.js';
-import { ArrSocialMedia }       from '../interfaces/ArrSocialMedia.js';
-import { ArrShippingOption }    from '../interfaces/ArrShippingOption.js';
+import { iArrContainer }        from '../interfaces/iArrContainer.js';
+import { iArrProduct }          from '../interfaces/iArrProduct.js';
+import { iArrFeature }          from '../interfaces/iArrFeature.js';
+import { iArrInfoCardContent }  from '../interfaces/iArrInfoCardContent.js';
+import { iArrSocialMedia }      from '../interfaces/iArrSocialMedia.js';
+import { iArrShippingOption }   from '../interfaces/iArrShippingOption.js';
 
-export const arrContainers: ArrContainer[] = [
+export const arrContainers: iArrContainer[] = [
     {
         id          : 'navbar_container',
         className   : 'navbar navbar-expand-md navbar-light m-0 p-0 fixed-top shadow',
@@ -72,7 +72,7 @@ export const arrContainers: ArrContainer[] = [
     }
 ];
 
-export const arrProducts: ArrProduct[] = [
+export const arrProducts: iArrProduct[] = [
     {
         id      : 'children',
         title   : 'Calzado Infantil',
@@ -153,7 +153,7 @@ export const arrProducts: ArrProduct[] = [
     }
 ];
 
-export const arrFeatures: ArrFeature[] = [
+export const arrFeatures: iArrFeature[] = [
     {
         icon        : 'bi bi-star-fill',
         title       : 'Calidad Premium',
@@ -171,7 +171,7 @@ export const arrFeatures: ArrFeature[] = [
     }
 ];
 
-export const arrInfoCardContent: ArrInfoCardContent[] = [
+export const arrInfoCardContent: iArrInfoCardContent[] = [
     {
         type    : 'Email',
         value   : globalInfo.email,
@@ -189,7 +189,7 @@ export const arrInfoCardContent: ArrInfoCardContent[] = [
     }
 ];
 
-export const arrSocialMedia: ArrSocialMedia[] = [
+export const arrSocialMedia: iArrSocialMedia[] = [
     {
         name    : 'facebook',
         icon    : 'bi bi-facebook',
@@ -204,7 +204,7 @@ export const arrSocialMedia: ArrSocialMedia[] = [
     }
 ];
 
-export const arrShippingOptions: ArrShippingOption[] = [
+export const arrShippingOptions: iArrShippingOption[] = [
     {
         subtitle    : 'Retiros en Estación Llavallol',
         description : [

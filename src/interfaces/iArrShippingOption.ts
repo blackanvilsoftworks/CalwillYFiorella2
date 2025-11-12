@@ -1,4 +1,4 @@
-export interface ArrShippingOption {
+export interface iArrShippingOption {
     subtitle      : string;
     description   : string[];
 }

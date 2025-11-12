@@ -44,9 +44,9 @@ export const formHandler = (
         return;
     }
 
-    const whatsappLinkPhoneNumber = `https://wa.me/549${cleanedPhoneNumber}`;
+    const whatsappLinkPhoneNumber   = `https://wa.me/549${cleanedPhoneNumber}`;
     
-    inputPhoneNumber.value = whatsappLinkPhoneNumber;
+    inputPhoneNumber.value          = whatsappLinkPhoneNumber;
     contacForm.submit();
     contacForm.reset();
 };

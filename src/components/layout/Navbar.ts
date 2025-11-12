@@ -1,6 +1,6 @@
 import { globalInfo }       from '../../utils/constants.js';
 import { arrContainers }    from '../../utils/arrays.js';
-import { ArrContainer }     from '../../interfaces/ArrContainer.js';
+import { iArrContainer }     from '../../interfaces/iArrContainer.js';
 import { ButtonElement } from '../elements/Button.js';
 import { DivElement } from '../elements/Div.js';
 
@@ -85,7 +85,7 @@ export class Navbar {
     private createNavbarItems (): HTMLUListElement {
         const ul        = document.createElement('ul');
         ul.className    = 'navbar-nav ms-auto';
-        ul.innerHTML    = arrContainers.map((item: ArrContainer) => {
+        ul.innerHTML    = arrContainers.map((item: iArrContainer) => {
             if (item.navbar){
                 const li        = document.createElement('li');
                 li.className    = 'nav-item';

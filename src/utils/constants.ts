@@ -1,6 +1,6 @@
-import { GlobalInfo } from '../interfaces/GlobalInfo.js';
+import { iGlobalInfo } from '../interfaces/iGlobalInfo.js';
 
-export const globalInfo: GlobalInfo = {
+export const globalInfo: iGlobalInfo = {
     name        : 'calwill & fiorella',
     phoneNumber : '+54 9 11-5959-0586',
     email       : 'calwillyfiorella@gmail.com'

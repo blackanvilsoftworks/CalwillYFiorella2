@@ -4,8 +4,8 @@ import { imagesPath }   from '../../utils/constants.js';
 import { arrProducts }  from '../../utils/arrays.js';
 import { createTitle }  from '../../utils/createTitle.js';
 
-import { ArrProduct }   from '../../interfaces/ArrProduct.js';
-import { ProductCard }  from '../../interfaces/ProductCard.js';
+import { iArrProduct }   from '../../interfaces/iArrProduct.js';
+import { iProductCard }  from '../../interfaces/iProductCard.js';
 import { ButtonElement } from '../elements/Button.js';
 import { DivElement } from '../elements/Div.js';
 
@@ -90,7 +90,7 @@ export class Products extends Container{
         return productContainer.getDiv();
     }
 
-    private createCarousel (product: ArrProduct, i: number): HTMLDivElement {
+    private createCarousel (product: iArrProduct, i: number): HTMLDivElement {
         const carouselContainer = new DivElement({className: 'row'});
 
         product.cards.forEach((card, j) => {
@@ -138,7 +138,7 @@ export class Products extends Container{
         return carouselContainer.getDiv();
     }
 
-    private createCarouselImages (product: ArrProduct, card: ProductCard, j: number): HTMLDivElement {
+    private createCarouselImages (product: iArrProduct, card: iProductCard, j: number): HTMLDivElement {
         const carouselImg = new DivElement({
             className: 'carousel-inner'
         });

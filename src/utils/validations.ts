@@ -18,8 +18,7 @@ export const phoneNumberValidation = (inputPhoneNumber: HTMLInputElement): strin
     if (!phoneNumberRegex.test(cleanedPhoneNumber)) {
         alert('El número de teléfono no puede contener espacios ni guines, y debe tener 10 caracteres.');
         return '';
-    }
-    
+    }    
     return cleanedPhoneNumber; 
 };
 

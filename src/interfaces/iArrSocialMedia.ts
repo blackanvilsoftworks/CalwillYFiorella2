@@ -1,4 +1,4 @@
-export interface ArrSocialMedia {
+export interface iArrSocialMedia {
     name    : string,
     icon    : string,
     color   : string,

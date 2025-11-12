@@ -1,4 +1,4 @@
-export interface ArrContainer {
+export interface iArrContainer {
     id          : string;
     className   : string;
     navbar      : string;
