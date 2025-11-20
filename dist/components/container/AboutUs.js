@@ -1,7 +1,7 @@
 import { Container } from '../Container.js';
+import { DivElement } from '../elements/Div.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { globalInfo, imagesPath } from '../../utils/constants.js';
-import { DivElement } from '../elements/Div.js';
 export class AboutUs extends Container {
     constructor(id, className, title, icon) {
         super(id, className);

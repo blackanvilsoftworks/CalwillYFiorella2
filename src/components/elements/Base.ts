@@ -164,20 +164,7 @@ hreflang - Idioma del recurso
 type - Tipo MIME del recurso
 
 
-img
-src - URL de la imagen
 
-alt - Texto alternativo (OBLIGATORIO)
-
-width / height - Dimensiones
-
-loading="lazy|eager" - Carga diferida
-
-srcset - Imágenes responsive
-
-sizes - Tamaños para responsive
-
-crossorigin - Control CORS
 
 
 
