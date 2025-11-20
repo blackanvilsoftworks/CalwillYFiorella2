@@ -16,8 +16,8 @@ export class Shipping extends Container {
         const h2 = new HeadingElement({
             className: 'mb-4',
             type: 'h2',
-            text: createTitle(title, icon).outerHTML
         });
+        h2.addFirstChild([createTitle(title, icon)]);
         divTitle.addLastChild([h2.getHeading()]);
         const divOption0 = new DivElement({ className: 'col-12 col-md-4 my-3 my-md-0 px-3' });
         divOption0.addLastChild(this.createShippingOption(0), 'innerHTML');

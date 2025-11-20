@@ -18,8 +18,8 @@ export class Products extends Container {
         const h2 = new HeadingElement({
             type: 'h2',
             className: 'text-center',
-            text: createTitle(title, icon).outerHTML
         });
+        h2.addFirstChild([createTitle(title, icon)]);
         div3.addLastChild([
             h2.getHeading(),
             this.createProductsNav(),

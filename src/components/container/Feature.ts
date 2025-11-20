@@ -35,8 +35,8 @@ export class Feature extends Container {
         const h2    = new HeadingElement({
             type        : 'h2',
             className   : 'section-title text-center mb-4',
-            text        : createTitle(title, icon).outerHTML
         });
+        h2.addFirstChild([createTitle(title, icon)]);
         
         div3.addLastChild([h2.getHeading()]);
 

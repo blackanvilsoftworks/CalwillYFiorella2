@@ -14,9 +14,9 @@ export class PayMethod extends Container{
     private createHTML (title: string, icon: string): void {
         const h2 = new HeadingElement({
             className   : 'mb-4',
-            text        : createTitle(title, icon).outerHTML,
             type        : 'h2'
         });
+        h2.addFirstChild([createTitle(title, icon)]);
 
         const html = `
             ${h2.getHeading().outerHTML}

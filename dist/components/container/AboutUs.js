@@ -16,8 +16,8 @@ export class AboutUs extends Container {
         const h2 = new HeadingElement({
             type: 'h2',
             className: 'col-12',
-            text: createTitle(title, icon).outerHTML
         });
+        h2.addFirstChild([createTitle(title, icon)]);
         const div3_1 = new DivElement({ className: 'col-12 col-md-5 col-lg-5 align-content-center' });
         const img = new ImgElement({
             className: 'img-fluid',

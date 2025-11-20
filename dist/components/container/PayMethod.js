@@ -10,9 +10,9 @@ export class PayMethod extends Container {
     createHTML(title, icon) {
         const h2 = new HeadingElement({
             className: 'mb-4',
-            text: createTitle(title, icon).outerHTML,
             type: 'h2'
         });
+        h2.addFirstChild([createTitle(title, icon)]);
         const html = `
             ${h2.getHeading().outerHTML}
             <p>Aceptamos los siguientes métodos de pago:</p>

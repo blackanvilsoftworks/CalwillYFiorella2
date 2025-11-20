@@ -14,8 +14,8 @@ export class ContactForm extends Container {
         const titleElement = new HeadingElement({
             type: 'h2',
             className: 'text-center mb-4',
-            text: createTitle(title, icon).outerHTML
         });
+        titleElement.addFirstChild([createTitle(title, icon)]);
         const contactForm = new DivElement({
             id: 'form-row',
             className: 'row'
