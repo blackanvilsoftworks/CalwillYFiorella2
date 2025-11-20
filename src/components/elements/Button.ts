@@ -3,6 +3,7 @@ import { BaseElements } from "./Base.js";
 
 export class ButtonElement extends BaseElements{
     private button: HTMLButtonElement;
+    private type: 'button' | 'submit' | 'reset';
 
     constructor ({
             id,
@@ -14,9 +15,15 @@ export class ButtonElement extends BaseElements{
         }: iButtonElement) {
         super('button', {id, className, text, dataBsAttributes, ariaAttributes});
         
-        this.button         = this.getElement() as HTMLButtonElement;
+        this.type   = type ?? 'button';
 
-        this.button.type    = type ?? 'button';
+        this.button = this.getElement() as HTMLButtonElement;
+
+        this.finalizeElement();
+    }
+
+    protected finalizeElement (): void {
+        this.button.type = this.type;
     }
 
     public getButton (): HTMLButtonElement {
