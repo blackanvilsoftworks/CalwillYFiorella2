@@ -4,6 +4,7 @@ import { ButtonElement }        from '../elements/Button.js';
 import { globalInfo }           from '../../utils/constants.js';
 import { createTitle }          from '../../utils/createTitle.js';
 import { arrInfoCardContent }   from '../../utils/arrays.js';
+import { HeadingElement } from '../elements/Heading.js';
 
 export class ContactForm extends Container {
     constructor (id: string, className: string, title: string, icon: string) {
@@ -12,10 +13,12 @@ export class ContactForm extends Container {
     }
 
     private createHTML (title: string, icon: string): void {
-        const titleElement = document.createElement('h2');
-        titleElement.className = 'text-center mb-4';
-        titleElement.append(createTitle(title, icon));
-
+        const titleElement = new HeadingElement({
+            type        : 'h2',
+            className   : 'text-center mb-4',
+            text        : createTitle(title, icon).outerHTML
+        });
+        
         const contactForm = new DivElement({
             id          : 'form-row',
             className   : 'row'
@@ -26,7 +29,7 @@ export class ContactForm extends Container {
         contactInfoCard.addLastChild([this.createContactInfoCard()]);
 
         const html = `
-            ${titleElement.outerHTML}
+            ${titleElement.getHeading().outerHTML}
             ${contactForm.getDiv().outerHTML}
             ${contactInfoCard.getDiv().outerHTML}`;
         this.setHTML(html);
@@ -144,15 +147,17 @@ export class ContactForm extends Container {
         
         const cardBody          = new DivElement({className: 'card-body'});
         
-        const cardTitle         = document.createElement('h5');
-        cardTitle.className     = 'card-title';
-        cardTitle.textContent   = 'Información de Contacto';
+        const cardTitle         = new HeadingElement({
+            type        : 'h5',
+            className   : 'card-title',
+            text        : 'Información de Contacto'
+        });
 
         const container         = new DivElement({className: 'container'});
         container.addLastChild(this.createContactInfoCardItems(), 'innerHTML');
 
         cardBody.addLastChild([
-            cardTitle,
+            cardTitle.getHeading(),
             container.getDiv()
         ]);
         cardHeader.addLastChild([cardBody.getDiv()]);
@@ -173,8 +178,8 @@ export class ContactForm extends Container {
             iconDiv.addLastChild([icon]);
 
             const infoDiv   = new DivElement({
-                className: 'col-11', 
-                text: `${item.type}: ${item.value}`
+                className   : 'col-11', 
+                text        : `${item.type}: ${item.value}`
             });
 
             container.addLastChild([iconDiv.getDiv()]);
