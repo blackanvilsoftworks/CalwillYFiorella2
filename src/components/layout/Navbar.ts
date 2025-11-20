@@ -1,8 +1,9 @@
+import { DivElement }       from '../elements/Div.js';
+import { ImgElement }       from '../elements/Img.js';
+import { ButtonElement }    from '../elements/Button.js';
 import { globalInfo }       from '../../utils/constants.js';
 import { arrContainers }    from '../../utils/arrays.js';
-import { iArrContainer }     from '../../interfaces/iArrContainer.js';
-import { ButtonElement } from '../elements/Button.js';
-import { DivElement } from '../elements/Div.js';
+import { iArrContainer }    from '../../interfaces/iArrContainer.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -38,17 +39,18 @@ export class Navbar {
         a.className = 'navbar-brand';
         a.href      = `#${arrContainers[1]?.id}`;
 
-        const img       = document.createElement('img');
-        img.src         = './assets/navbar-logo.png';
-        img.alt         = `${globalInfo.name} Logo`;
-        img.height      = 40;
-        img.className   = 'd-inline-block align-text-top me-2';
+        const img       = new ImgElement({
+            className   : 'd-inline-block align-text-top me-2',
+            src         : './assets/navbar-logo.png',
+            alt         : `${globalInfo.name} Logo`,
+            height      : 40
+        });
 
         const span       = document.createElement('span');
         span.className   = 'ms-2 navbar-title';
         span.textContent = globalInfo.name.toUpperCase();
 
-        a.appendChild(img);
+        a.appendChild(img.getImg());
         a.appendChild(span);
         div1.addLastChild([a]);
 

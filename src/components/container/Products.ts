@@ -148,8 +148,8 @@ export class Products extends Container{
             const div = new DivElement({
                 className: `carousel-item${k === 0 ? ' active' : ''}`
             });
-            
-            const img       = new ImgElement({
+
+            const img = new ImgElement({
                 src         : `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`,
                 alt         : `Imagen ${k + 1}`,
                 className   : 'd-block w-100',

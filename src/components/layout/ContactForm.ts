@@ -124,7 +124,7 @@ export class ContactForm extends Container {
             textarea
         ]);
 
-        const submitButton          = new ButtonElement({
+        const submitButton      = new ButtonElement({
             text        : 'Enviar',
             type        : 'submit',
             className   : 'btn btn-primary'
