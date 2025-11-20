@@ -2,7 +2,9 @@ import { iDivElement } from "../../interfaces/elements/iDivElement.js";
 import { BaseElements } from "./Base.js";
 
 export class DivElement extends BaseElements{
-    private div: HTMLDivElement;
+    private div             : HTMLDivElement;
+    private contenteditable : string    | undefined;
+    private spellcheck      : boolean   | undefined;
 
     constructor ({
             id,
@@ -15,10 +17,17 @@ export class DivElement extends BaseElements{
         }: iDivElement) {
         super('div', {id, className, text, dataBsAttributes, ariaAttributes});
         
+        this.contenteditable    = contenteditable;
+        this.spellcheck         = spellcheck;
+
         this.div = this.getElement() as HTMLDivElement;
         
-        if (contenteditable)    this.div.contentEditable    = contenteditable;
-        if (spellcheck)         this.div.spellcheck         = spellcheck;
+        this.finalizeElement();
+    }
+
+    protected finalizeElement (): void {
+        if (this.contenteditable)   this.div.contentEditable    = this.contenteditable;
+        if (this.spellcheck)        this.div.spellcheck         = this.spellcheck;
     }
 
     public getDiv (): HTMLDivElement {
