@@ -1,4 +1,6 @@
 import { Container }        from '../Container.js';
+import { HeadingElement }   from '../elements/Heading.js';
+
 import { createTitle }      from '../../utils/createTitle.js';
 import { arrPayMethods }    from '../../utils/arrays.js';
 
@@ -10,10 +12,14 @@ export class PayMethod extends Container{
     }
 
     private createHTML (title: string, icon: string): void {
+        const h2 = new HeadingElement({
+            className   : 'mb-4',
+            text        : createTitle(title, icon).outerHTML,
+            type        : 'h2'
+        });
+
         const html = `
-            <h2 class="mb-4">
-                ${createTitle(title, icon).outerHTML}
-            </h2>
+            ${h2.getHeading().outerHTML}
             <p>Aceptamos los siguientes métodos de pago:</p>
             ${this.createPayMethodsList().outerHTML}`;
         this.setHTML(html);
