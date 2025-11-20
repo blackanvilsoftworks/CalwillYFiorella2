@@ -51,7 +51,7 @@ export class ImgElement extends BaseElements{
         }
     }
 
-    private finalizeElement (): void {
+    protected finalizeElement (): void {
         this.img.src = this.src;
         this.img.alt = this.alt;
 

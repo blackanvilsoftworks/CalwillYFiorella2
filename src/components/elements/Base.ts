@@ -2,7 +2,7 @@ import { iBaseElement } from "../../interfaces/elements/iBaseElement.js";
 import { tBaseChild } from "../../types/tBaseChild.js";
 import { ButtonElement } from "./Button.js";
 
-export class BaseElements {
+export abstract class BaseElements {
     private element: HTMLElement;
     private id: string | undefined;
 
@@ -48,6 +48,8 @@ export class BaseElements {
                                             
         if (text) this.element.append(text);
     }
+
+    protected abstract finalizeElement (): void; // To set specific attributes
 
     protected getElement () { return this.element }
 
