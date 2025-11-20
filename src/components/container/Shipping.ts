@@ -2,6 +2,7 @@ import { Container }            from "../Container.js";
 import { DivElement }           from "../elements/Div.js";
 import { arrShippingOptions }   from "../../utils/arrays.js";
 import { createTitle }          from "../../utils/createTitle.js";
+import { HeadingElement } from "../elements/Heading.js";
 
 export class Shipping extends Container {
     constructor(id: string, className: string, title: string, icon: string) {
@@ -18,12 +19,13 @@ export class Shipping extends Container {
         
         const divTitle  = new DivElement({className: 'col-md-12'});
 
-        const h2            = document.createElement('h2');
-        h2.className        = 'mb-4';
-
-        h2.appendChild(createTitle(title, icon));
+        const h2        = new HeadingElement({
+            className   : 'mb-4',
+            type        : 'h2',
+            text        : createTitle(title, icon).outerHTML
+        });
         
-        divTitle.addLastChild([h2]);
+        divTitle.addLastChild([h2.getHeading()]);
         
         const divOption0 = new DivElement({className: 'col-12 col-md-4 my-3 my-md-0 px-3'});
         divOption0.addLastChild(this.createShippingOption(0), 'innerHTML');
@@ -53,8 +55,13 @@ export class Shipping extends Container {
 
     private createShippingOption (i: number): string {
         if (arrShippingOptions[i]?.subtitle && arrShippingOptions[i]?.description) {
+            const h4 = new HeadingElement({
+                className   : 'subtitles',
+                type        : 'h4',
+                text        : arrShippingOptions[i].subtitle
+            });
             return `
-                <h4 class="subtitles">${arrShippingOptions[i].subtitle}</h4>
+                ${h4.getHeading().outerHTML}
                 ${arrShippingOptions[i].description.map((desc) => `
                     <p>${desc}</p>
                 `).join('')}`;
