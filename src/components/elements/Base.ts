@@ -155,14 +155,6 @@ readonly - Solo lectura
 
 
 
-p
-align - Alineación (obsoleto)
-
-dir="ltr|rtl" - Dirección del texto
-
-
-
-
 
 Anchor
 href - URL de destino
