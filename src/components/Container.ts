@@ -1,4 +1,4 @@
-import { DivElement } from "./elements/Div";
+import { DivElement } from "./elements/Div.js";
 
 export class Container {
     private container: HTMLDivElement;

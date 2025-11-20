@@ -1,6 +1,6 @@
-import { createTitle } from '../../utils/createTitle.js';
-import { arrPayMethods } from '../../utils/arrays.js';
-import { Container } from '../Container.js';
+import { Container }        from '../Container.js';
+import { createTitle }      from '../../utils/createTitle.js';
+import { arrPayMethods }    from '../../utils/arrays.js';
 
 export class PayMethod extends Container{
     

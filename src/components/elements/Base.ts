@@ -1,7 +1,7 @@
+import { tBaseChild }           from "../../types/tBaseChild.js";
 import { iAriaAttributes }      from "../../interfaces/elements/iAriaAttributes.js";
 import { iBaseElement }         from "../../interfaces/elements/iBaseElement.js";
 import { iDataBsAttributes }    from "../../interfaces/elements/iDataBsAttributes.js";
-import { tBaseChild }           from "../../types/tBaseChild.js";
 
 export abstract class BaseElements {
     private element         : HTMLElement;
@@ -11,7 +11,9 @@ export abstract class BaseElements {
     private dataBsAttributes: iDataBsAttributes[]   | undefined;
     private ariaAttributes  : iAriaAttributes[]     | undefined;
 
-    constructor (element: string, {
+    constructor (
+        element: string, // e.g., 'div', 'span', 'a', etc.
+        {
             id,
             className,
             text,
@@ -19,14 +21,7 @@ export abstract class BaseElements {
             ariaAttributes
         }: iBaseElement) {
         
-        switch (element) {
-            case 'button':
-                this.element = document.createElement('button');
-                break;
-            default:
-                this.element = document.createElement('div');
-                break;
-        }
+        this.element = document.createElement(element);
 
         this.id                 = id;
         this.className          = className;

@@ -1,7 +1,7 @@
-import { arrShippingOptions } from "../../utils/arrays.js";
-import { createTitle } from "../../utils/createTitle.js";
 import { Container } from "../Container.js";
 import { DivElement } from "../elements/Div.js";
+import { arrShippingOptions } from "../../utils/arrays.js";
+import { createTitle } from "../../utils/createTitle.js";
 export class Shipping extends Container {
     constructor(id, className, title, icon) {
         super(id, className);

@@ -1,5 +1,5 @@
-import { iDivElement } from "../../interfaces/elements/iDivElement.js";
 import { BaseElements } from "./Base.js";
+import { iDivElement }  from "../../interfaces/elements/iDivElement.js";
 
 export class DivElement extends BaseElements{
     private div             : HTMLDivElement;

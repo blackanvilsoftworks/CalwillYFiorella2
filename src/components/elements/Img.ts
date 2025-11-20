@@ -1,5 +1,5 @@
-import { iImgElement }  from "../../interfaces/elements/iImgElement.js";
 import { BaseElements } from "./Base.js";
+import { iImgElement }  from "../../interfaces/elements/iImgElement.js";
 
 export class ImgElement extends BaseElements{
     private img         : HTMLImageElement;

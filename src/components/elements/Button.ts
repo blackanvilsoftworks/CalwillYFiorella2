@@ -1,5 +1,5 @@
-import { iButtonElement } from "../../interfaces/elements/iButtonElement.js";
-import { BaseElements } from "./Base.js";
+import { BaseElements }     from "./Base.js";
+import { iButtonElement }   from "../../interfaces/elements/iButtonElement.js";
 
 export class ButtonElement extends BaseElements{
     private button: HTMLButtonElement;

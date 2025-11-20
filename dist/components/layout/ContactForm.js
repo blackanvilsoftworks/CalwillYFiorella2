@@ -1,9 +1,9 @@
+import { Container } from '../Container.js';
+import { DivElement } from '../elements/Div.js';
+import { ButtonElement } from '../elements/Button.js';
 import { globalInfo } from '../../utils/constants.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { arrInfoCardContent } from '../../utils/arrays.js';
-import { Container } from '../Container.js';
-import { ButtonElement } from '../elements/Button.js';
-import { DivElement } from '../elements/Div.js';
 export class ContactForm extends Container {
     constructor(id, className, title, icon) {
         super(id, className);

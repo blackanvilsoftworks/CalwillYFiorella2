@@ -1,5 +1,5 @@
-import { iAriaAttributes } from "./iAriaAttributes.js";
-import { iDataBsAttributes } from "./iDataBsAttributes.js";
+import { iAriaAttributes }      from "./iAriaAttributes.js";
+import { iDataBsAttributes }    from "./iDataBsAttributes.js";
 
 export interface iBaseElement {
     id?                 : string                | undefined;

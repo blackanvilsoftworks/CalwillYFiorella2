@@ -1,13 +1,7 @@
 export class BaseElements {
-    constructor(element, { id, className, text, dataBsAttributes, ariaAttributes }) {
-        switch (element) {
-            case 'button':
-                this.element = document.createElement('button');
-                break;
-            default:
-                this.element = document.createElement('div');
-                break;
-        }
+    constructor(element, // e.g., 'div', 'span', 'a', etc.
+    { id, className, text, dataBsAttributes, ariaAttributes }) {
+        this.element = document.createElement(element);
         this.id = id;
         this.className = className;
         this.text = text;

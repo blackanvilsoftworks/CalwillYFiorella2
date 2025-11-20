@@ -1,4 +1,4 @@
-import { DivElement } from "./elements/Div";
+import { DivElement } from "./elements/Div.js";
 export class Container {
     constructor(id, className) {
         this.container = new DivElement({ id, className }).getDiv();

@@ -1,14 +1,14 @@
-import { Container }    from '../Container.js';
+import { Container }        from '../Container.js';
+import { DivElement }       from '../elements/Div.js';
+import { ImgElement }       from '../elements/Img.js';
+import { ButtonElement }    from '../elements/Button.js';
 
-import { imagesPath }   from '../../utils/constants.js';
-import { arrProducts }  from '../../utils/arrays.js';
-import { createTitle }  from '../../utils/createTitle.js';
+import { imagesPath }       from '../../utils/constants.js';
+import { arrProducts }      from '../../utils/arrays.js';
+import { createTitle }      from '../../utils/createTitle.js';
 
-import { iArrProduct }   from '../../interfaces/iArrProduct.js';
-import { iProductCard }  from '../../interfaces/iProductCard.js';
-import { ButtonElement } from '../elements/Button.js';
-import { DivElement } from '../elements/Div.js';
-import { ImgElement } from '../elements/Img.js';
+import { iArrProduct }      from '../../interfaces/iArrProduct.js';
+import { iProductCard }     from '../../interfaces/iProductCard.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {

@@ -1,6 +1,6 @@
-import { arrSocialMedia }   from '../../utils/arrays.js';
+import { DivElement }       from '../elements/Div.js';
 import { ButtonElement }    from '../elements/Button.js';
-import { DivElement } from '../elements/Div.js';
+import { arrSocialMedia }   from '../../utils/arrays.js';
 
 export class Footer {
     private container: HTMLElement;
