@@ -92,10 +92,6 @@ otros atributos
 
 
 
-
-
-
-
 input
 
 autofocus - Foco automático
@@ -159,6 +155,14 @@ readonly - Solo lectura
 
 
 
+p
+align - Alineación (obsoleto)
+
+dir="ltr|rtl" - Dirección del texto
+
+
+
+
 
 Anchor
 href - URL de destino
@@ -172,27 +176,6 @@ download - Descarga el recurso
 hreflang - Idioma del recurso
 
 type - Tipo MIME del recurso
-
-
-
-
-
-
-
-
-
-p
-align - Alineación (obsoleto)
-
-dir="ltr|rtl" - Dirección del texto
-
-
-
-h
-align - Alineación (obsoleto)
-
-dir - Dirección del texto
-
 
 
 */
