@@ -1,8 +1,9 @@
-import { arrFeatures } from '../../utils/arrays.js';
-import { createTitle } from '../../utils/createTitle.js';
 import { Container } from '../Container.js';
 import { DivElement } from '../elements/Div.js';
+import { HeadingElement } from '../elements/Heading.js';
 import { FeatureBoxContainer } from '../ui/FeatureBoxContainer.js';
+import { arrFeatures } from '../../utils/arrays.js';
+import { createTitle } from '../../utils/createTitle.js';
 export class Feature extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -19,10 +20,12 @@ export class Feature extends Container {
         const div1 = new DivElement({ className: 'row justify-content-center' });
         const div2 = new DivElement({ className: 'col-10' });
         const div3 = new DivElement({ className: 'row' });
-        const h2 = document.createElement('h2');
-        h2.className = 'section-title text-center mb-4';
-        h2.appendChild(createTitle(title, icon));
-        div3.addLastChild([h2]);
+        const h2 = new HeadingElement({
+            type: 'h2',
+            className: 'section-title text-center mb-4',
+            text: createTitle(title, icon).outerHTML
+        });
+        div3.addLastChild([h2.getHeading()]);
         this.featureBoxes.forEach(box => {
             div3.addLastChild([box]);
         });
