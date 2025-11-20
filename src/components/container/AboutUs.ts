@@ -1,11 +1,13 @@
 import { Container }    from '../Container.js';
 import { DivElement }   from '../elements/Div.js';
+import { ImgElement }   from '../elements/Img.js';
 import { createTitle }  from '../../utils/createTitle.js';
 
 import { 
     globalInfo, 
     imagesPath 
 } from '../../utils/constants.js';
+
 
 
 export class AboutUs extends Container{
@@ -28,11 +30,13 @@ export class AboutUs extends Container{
 
         const div3_1 = new DivElement({className: 'col-12 col-md-5 col-lg-5 align-content-center'});
 
-        const img           = document.createElement('img');
-        img.src             = `${imagesPath}logo.jpg`;
-        img.className       = 'img-fluid';
-        img.alt             = `${globalInfo.name} Logo`;
-        div3_1.addLastChild([img]);
+        const img = new ImgElement({
+            className   : 'img-fluid',
+            src         : `${imagesPath}logo.jpg`,
+            alt         : `${globalInfo.name} Logo`
+        });
+
+        div3_1.addLastChild([img.getImg()]);
 
         const div3_2 = new DivElement({className: 'col-12 col-md-7 col-lg-7 px-5 align-self-center'});
         
