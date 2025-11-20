@@ -2,6 +2,7 @@ import { Container }        from '../Container.js';
 import { DivElement }       from '../elements/Div.js';
 import { ImgElement }       from '../elements/Img.js';
 import { ButtonElement }    from '../elements/Button.js';
+import { HeadingElement }   from '../elements/Heading.js';
 
 import { imagesPath }       from '../../utils/constants.js';
 import { arrProducts }      from '../../utils/arrays.js';
@@ -24,12 +25,14 @@ export class Products extends Container{
         
         const div3  = new DivElement({className: 'row'});
         
-        const h     = document.createElement('h2');
-        h.className = 'text-center';
-        h.appendChild(createTitle(title, icon));
-
+        const h2    = new HeadingElement({
+            type        : 'h2',
+            className   : 'text-center',
+            text        : createTitle(title, icon).outerHTML
+        });
+        
         div3.addLastChild([
-            h,
+            h2.getHeading(),
             this.createProductsNav(),
             this.createProductsContainers()
         ]);
@@ -113,11 +116,11 @@ export class Products extends Container{
 
             productCard.addLastChild([carousel.getDiv()]);
 
-            const cardBody = new DivElement({className: 'card-body'});
+            const cardBody          = new DivElement({className: 'card-body'});
             
-            const cardTitle = new DivElement({
-                className: 'card-title', 
-                text: card.title
+            const cardTitle         = new DivElement({
+                className   : 'card-title', 
+                text        : card.title
             });
             
             const cardText          = document.createElement('p');
