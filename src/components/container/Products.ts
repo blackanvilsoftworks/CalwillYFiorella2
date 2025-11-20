@@ -8,6 +8,7 @@ import { iArrProduct }   from '../../interfaces/iArrProduct.js';
 import { iProductCard }  from '../../interfaces/iProductCard.js';
 import { ButtonElement } from '../elements/Button.js';
 import { DivElement } from '../elements/Div.js';
+import { ImgElement } from '../elements/Img.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -147,12 +148,14 @@ export class Products extends Container{
             const div = new DivElement({
                 className: `carousel-item${k === 0 ? ' active' : ''}`
             });
-            const img       = document.createElement('img');
-            img.src         = `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`;
-            img.className   = 'd-block w-100';
-            img.alt         = `Imagen ${k + 1}`;
+            
+            const img       = new ImgElement({
+                src         : `${imagesPath}productsContainer/${product.id}/product${j + 1}_img${k + 1}.jpg`,
+                alt         : `Imagen ${k + 1}`,
+                className   : 'd-block w-100',
+            });
 
-            div.addLastChild([img]);
+            div.addLastChild([img.getImg()]);
 
             carouselImg.addLastChild([div.getDiv()]);
         });
