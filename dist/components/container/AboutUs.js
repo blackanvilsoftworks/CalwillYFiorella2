@@ -1,6 +1,7 @@
 import { Container } from '../Container.js';
 import { DivElement } from '../elements/Div.js';
 import { ImgElement } from '../elements/Img.js';
+import { HeadingElement } from '../elements/Heading.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { globalInfo, imagesPath } from '../../utils/constants.js';
 export class AboutUs extends Container {
@@ -12,9 +13,11 @@ export class AboutUs extends Container {
         const div1 = new DivElement({ className: 'row justify-content-center' });
         const div2 = new DivElement({ className: 'col-10' });
         const div3 = new DivElement({ className: 'row' });
-        const h2 = document.createElement('h2');
-        h2.className = 'col-12';
-        h2.appendChild(createTitle(title, icon));
+        const h2 = new HeadingElement({
+            type: 'h2',
+            className: 'col-12',
+            text: createTitle(title, icon).outerHTML
+        });
         const div3_1 = new DivElement({ className: 'col-12 col-md-5 col-lg-5 align-content-center' });
         const img = new ImgElement({
             className: 'img-fluid',
@@ -38,7 +41,7 @@ export class AboutUs extends Container {
             p4
         ]);
         div3.addLastChild([
-            h2,
+            h2.getHeading(),
             div3_1.getDiv(),
             div3_2.getDiv()
         ]);

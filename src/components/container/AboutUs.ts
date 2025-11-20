@@ -1,6 +1,7 @@
 import { Container }    from '../Container.js';
 import { DivElement }   from '../elements/Div.js';
 import { ImgElement }   from '../elements/Img.js';
+import { HeadingElement } from '../elements/Heading.js';
 import { createTitle }  from '../../utils/createTitle.js';
 
 import { 
@@ -24,10 +25,12 @@ export class AboutUs extends Container{
 
         const div3 = new DivElement({className: 'row'});
 
-        const h2            = document.createElement('h2');
-        h2.className        = 'col-12';
-        h2.appendChild(createTitle(title, icon));
-
+        const h2   = new HeadingElement({
+            type        : 'h2',
+            className   : 'col-12',
+            text        : createTitle(title, icon).outerHTML
+        });
+        
         const div3_1 = new DivElement({className: 'col-12 col-md-5 col-lg-5 align-content-center'});
 
         const img = new ImgElement({
@@ -60,7 +63,7 @@ export class AboutUs extends Container{
         ]);
         
         div3.addLastChild([
-            h2,
+            h2.getHeading(),
             div3_1.getDiv(),
             div3_2.getDiv()
         ]);
