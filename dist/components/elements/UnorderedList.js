@@ -1,8 +1,9 @@
 import { BaseElements } from "./Base.js";
 export class UnorderedListElement extends BaseElements {
-    constructor({ id, className, text, dataBsAttributes, ariaAttributes, style, }) {
+    constructor({ id, className, text, dataBsAttributes, ariaAttributes, style, role }) {
         super('ul', { id, className, text, dataBsAttributes, ariaAttributes });
         this.style = style;
+        this.role = role;
         this.ul = this.getElement();
         this.finalizeElement();
     }
@@ -21,6 +22,8 @@ export class UnorderedListElement extends BaseElements {
     finalizeElement() {
         if (this.style)
             this.ul.style = this.style;
+        if (this.role)
+            this.ul.role = this.role;
     }
 }
 //# sourceMappingURL=UnorderedList.js.map

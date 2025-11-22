@@ -4,6 +4,7 @@ import { iUnorderedListElement }    from "../../interfaces/elements/iUnorderedLi
 export class UnorderedListElement extends BaseElements{
     private ul      : HTMLUListElement;
     private style   : string | undefined;
+    private role    : string | undefined;
 
     constructor ({  
             id,
@@ -12,10 +13,12 @@ export class UnorderedListElement extends BaseElements{
             dataBsAttributes,
             ariaAttributes,
             style,
+            role
         }: iUnorderedListElement) {
         super('ul', {id, className, text, dataBsAttributes, ariaAttributes});
 
         this.style  = style;
+        this.role   = role;
 
         this.ul     = this.getElement() as HTMLUListElement;
         this.finalizeElement();
@@ -34,6 +37,7 @@ export class UnorderedListElement extends BaseElements{
     }
 
     protected finalizeElement (): void {
-        if (this.style) this.ul.style = this.style;
+        if (this.style) this.ul.style   = this.style;
+        if (this.role)  this.ul.role    = this.role;
     }
 }

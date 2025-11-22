@@ -7,6 +7,7 @@ import { imagesPath } from '../../utils/constants.js';
 import { arrProducts } from '../../utils/arrays.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 export class Products extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -31,11 +32,12 @@ export class Products extends Container {
         this.setHTML(div1.getDiv().outerHTML);
     }
     createProductsNav() {
-        const productsNav = document.createElement('ul');
-        productsNav.id = 'productsTab';
-        productsNav.className = 'nav nav-pills justify-content-center mb-4';
-        productsNav.role = 'tablist';
-        productsNav.innerHTML = arrProducts.map((product, i) => {
+        const productsNavUL = new UnorderedListElement({
+            id: 'productsTab',
+            className: 'nav nav-pills justify-content-center mb-4',
+            role: 'tablist'
+        });
+        arrProducts.forEach((product, i) => {
             const li = document.createElement('li');
             li.className = 'nav-item';
             li.role = 'presentation';
@@ -53,9 +55,9 @@ export class Products extends Container {
                 // aria_controls: product.id
             });
             li.appendChild(button.getButton());
-            return li.outerHTML;
-        }).join('');
-        return productsNav;
+            productsNavUL.addLastChild([li]);
+        });
+        return productsNavUL.getUnorderedList();
     }
     createProductsContainers() {
         const productContainer = new DivElement({

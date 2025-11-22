@@ -11,6 +11,7 @@ import { createTitle }      from '../../utils/createTitle.js';
 import { iArrProduct }      from '../../interfaces/iArrProduct.js';
 import { iProductCard }     from '../../interfaces/iProductCard.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -45,11 +46,13 @@ export class Products extends Container{
     }
 
     private createProductsNav (): HTMLUListElement {
-        const productsNav       = document.createElement('ul');
-        productsNav.id          = 'productsTab';
-        productsNav.className   = 'nav nav-pills justify-content-center mb-4';
-        productsNav.role        = 'tablist';
-        productsNav.innerHTML   = arrProducts.map((product, i) => {
+        const productsNavUL = new UnorderedListElement({
+            id          : 'productsTab',
+            className   : 'nav nav-pills justify-content-center mb-4',
+            role        : 'tablist'
+        });
+        
+        arrProducts.forEach((product, i) => {
             const li        = document.createElement('li');
             li.className    = 'nav-item';
             li.role         = 'presentation';
@@ -70,9 +73,9 @@ export class Products extends Container{
 
             li.appendChild(button.getButton());
 
-            return li.outerHTML;
-        }).join('');
-        return productsNav;
+            productsNavUL.addLastChild([li]);
+        });
+        return productsNavUL.getUnorderedList();
     }
 
     private createProductsContainers (): HTMLDivElement {

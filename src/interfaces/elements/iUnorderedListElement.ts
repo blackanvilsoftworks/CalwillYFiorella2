@@ -1,5 +1,6 @@
-import { iBaseElement }         from "./iBaseElement.js";
+import { iBaseElement } from "./iBaseElement.js";
 
 export interface iUnorderedListElement extends iBaseElement {
-    style?: string;
+    style?  : string;
+    role?   : string;
 }
