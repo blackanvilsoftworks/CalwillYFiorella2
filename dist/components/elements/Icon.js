@@ -1,11 +1,11 @@
 import { BaseElements } from "./Base.js";
-export class SpanElement extends BaseElements {
+export class IconElement extends BaseElements {
     constructor({ id, className, text, dataBsAttributes, ariaAttributes }) {
         super('i', { id, className, text, dataBsAttributes, ariaAttributes });
         this.i = this.getElement();
         this.finalizeElement();
     }
-    getSpan() {
+    getIcon() {
         try {
             return this.i;
         }

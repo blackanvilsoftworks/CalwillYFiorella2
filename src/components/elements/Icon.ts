@@ -1,8 +1,8 @@
 import { BaseElements } from "./Base.js";
 import { iIconElement } from "../../interfaces/elements/iIconElement.js";
 
-export class SpanElement extends BaseElements{
-    private i      : iIconElement;
+export class IconElement extends BaseElements{
+    private i: HTMLElement;
 
     constructor ({  
             id,
@@ -13,11 +13,11 @@ export class SpanElement extends BaseElements{
         }: iIconElement) {
         super('i', {id, className, text, dataBsAttributes, ariaAttributes});
 
-        this.i = this.getElement() as iIconElement;
+        this.i = this.getElement() as HTMLElement;
         this.finalizeElement();
     }
 
-    public getSpan (): iIconElement {
+    public getIcon (): HTMLElement {
         try {
             return this.i;
         } catch (error) {

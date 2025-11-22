@@ -5,6 +5,7 @@ import { globalInfo }           from '../../utils/constants.js';
 import { createTitle }          from '../../utils/createTitle.js';
 import { arrInfoCardContent }   from '../../utils/arrays.js';
 import { HeadingElement } from '../elements/Heading.js';
+import { IconElement } from '../elements/Icon.js';
 
 export class ContactForm extends Container {
     constructor (id: string, className: string, title: string, icon: string) {
@@ -172,18 +173,19 @@ export class ContactForm extends Container {
             
             const iconDiv   = new DivElement({className: 'col-1'});
             
-            const icon      = document.createElement('i');
-            icon.className  = item.icon;
+            const icon      = new IconElement({className: item.icon});
 
-            iconDiv.addLastChild([icon]);
+            iconDiv.addLastChild([icon.getIcon()]);
 
             const infoDiv   = new DivElement({
                 className   : 'col-11', 
                 text        : `${item.type}: ${item.value}`
             });
 
-            container.addLastChild([iconDiv.getDiv()]);
-            container.addLastChild([infoDiv.getDiv()]);
+            container.addLastChild([
+                iconDiv.getDiv(),
+                infoDiv.getDiv()
+            ]);
 
             return container.getDiv().outerHTML;
         }).join('');

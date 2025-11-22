@@ -3,6 +3,7 @@ import { ButtonElement } from '../elements/Button.js';
 import { arrSocialMedia } from '../../utils/arrays.js';
 import { HeadingElement } from '../elements/Heading.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
+import { IconElement } from '../elements/Icon.js';
 export class Footer {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -64,9 +65,8 @@ export class Footer {
                 className: `btn btn-outline-${media.color} w-100`,
                 text: ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
             });
-            const icon = document.createElement('i');
-            icon.className = media.icon;
-            button.addLastChild([icon]);
+            const icon = new IconElement({ className: media.icon });
+            button.addLastChild([icon.getIcon()]);
             div.addLastChild([button.getButton()]);
             return div.getDiv().outerHTML;
         }).join('');
