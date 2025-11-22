@@ -1,19 +1,19 @@
-import { Container }        from '../Container.js';
-import { DivElement }       from '../elements/Div.js';
-import { ImgElement }       from '../elements/Img.js';
-import { ButtonElement }    from '../elements/Button.js';
-import { HeadingElement }   from '../elements/Heading.js';
-
-import { imagesPath }       from '../../utils/constants.js';
-import { arrProducts }      from '../../utils/arrays.js';
-import { createTitle }      from '../../utils/createTitle.js';
-
-import { iArrProduct }      from '../../interfaces/iArrProduct.js';
-import { iProductCard }     from '../../interfaces/iProductCard.js';
-import { ParagraphElement } from '../elements/Paragraph.js';
+import { Container }            from '../Container.js';
+import { DivElement }           from '../elements/Div.js';
+import { ImgElement }           from '../elements/Img.js';
+import { SpanElement }          from '../elements/Span.js';
+import { ButtonElement }        from '../elements/Button.js';
+import { HeadingElement }       from '../elements/Heading.js';
+import { ListItemElement }      from '../elements/ListItem.js';
+import { ParagraphElement }     from '../elements/Paragraph.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
-import { ListItemElement } from '../elements/ListItem.js';
-import { SpanElement } from '../elements/Span.js';
+
+import { imagesPath }           from '../../utils/constants.js';
+import { arrProducts }          from '../../utils/arrays.js';
+import { createTitle }          from '../../utils/createTitle.js';
+
+import { iArrProduct }          from '../../interfaces/iArrProduct.js';
+import { iProductCard }         from '../../interfaces/iProductCard.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -183,20 +183,19 @@ export class Products extends Container{
             }],
         });
         
-        const span1             = new SpanElement({
-            className: `carousel-control-${prevOrNext}-icon`,
-            ariaAttributes: [{hidden: 'true'}]
+        const span1 = new SpanElement({
+            className       : `carousel-control-${prevOrNext}-icon`,
+            ariaAttributes  : [{hidden: 'true'}]
         });
-        span1.className         = `carousel-control-${prevOrNext}-icon`;
-        span1.setAttribute('aria-hidden', 'true');
 
-        const span2             = document.createElement('span');
-        span2.className         = 'visually-hidden';
-        span2.textContent       = prevOrNext === 'next' ? 'Next' : 'Previous';
+        const span2 = new SpanElement({
+            className   : 'visually-hidden',
+            text        : prevOrNext === 'next' ? 'Next' : 'Previous'
+        });
 
         btn.addLastChild([
-            span1,
-            span2
+            span1.getSpan(),
+            span2.getSpan()
         ]);
         
         return btn.getButton();
