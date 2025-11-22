@@ -5,6 +5,7 @@ import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
 import { AnchorElement } from '../elements/Anchor.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
+import { ListItemElement } from '../elements/ListItem.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -78,15 +79,16 @@ export class Navbar {
         });
         arrContainers.forEach((item) => {
             if (item.navbar) {
-                const li = document.createElement('li');
-                li.className = 'nav-item';
+                const li = new ListItemElement({
+                    className: `nav-item`,
+                });
                 const a = new AnchorElement({
                     className: 'nav-link',
                     href: `#${item.id}`,
                     text: item.navbar
                 });
-                li.appendChild(a.getAnchor());
-                ul.addLastChild([li]);
+                li.addLastChild([a.getAnchor()]);
+                ul.addLastChild([li.getListItem()]);
             }
         });
         return ul.getUnorderedList();
