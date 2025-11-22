@@ -1,8 +1,9 @@
 import { Container } from "../Container.js";
 import { DivElement } from "../elements/Div.js";
+import { HeadingElement } from "../elements/Heading.js";
+import { ParagraphElement } from "../elements/Paragraph.js";
 import { arrShippingOptions } from "../../utils/arrays.js";
 import { createTitle } from "../../utils/createTitle.js";
-import { HeadingElement } from "../elements/Heading.js";
 export class Shipping extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -49,7 +50,7 @@ export class Shipping extends Container {
             return `
                 ${h4.getHeading().outerHTML}
                 ${arrShippingOptions[i].description.map((desc) => `
-                    <p>${desc}</p>
+                    ${new ParagraphElement({ text: desc }).getParagraph().outerHTML}
                 `).join('')}`;
         }
         return '';

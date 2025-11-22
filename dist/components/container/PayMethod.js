@@ -1,5 +1,6 @@
 import { Container } from '../Container.js';
 import { HeadingElement } from '../elements/Heading.js';
+import { ParagraphElement } from '../elements/Paragraph.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { arrPayMethods } from '../../utils/arrays.js';
 export class PayMethod extends Container {
@@ -13,9 +14,12 @@ export class PayMethod extends Container {
             type: 'h2'
         });
         h2.addFirstChild([createTitle(title, icon)]);
+        const p = new ParagraphElement({
+            text: 'Aceptamos los siguientes métodos de pago:'
+        });
         const html = `
             ${h2.getHeading().outerHTML}
-            <p>Aceptamos los siguientes métodos de pago:</p>
+            ${p.getParagraph().outerHTML}
             ${this.createPayMethodsList().outerHTML}`;
         this.setHTML(html);
     }

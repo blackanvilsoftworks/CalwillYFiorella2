@@ -6,6 +6,7 @@ import { HeadingElement } from '../elements/Heading.js';
 import { imagesPath } from '../../utils/constants.js';
 import { arrProducts } from '../../utils/arrays.js';
 import { createTitle } from '../../utils/createTitle.js';
+import { ParagraphElement } from '../elements/Paragraph.js';
 export class Products extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -95,12 +96,13 @@ export class Products extends Container {
                 className: 'card-title',
                 text: card.title
             });
-            const cardText = document.createElement('p');
-            cardText.className = 'card-text';
-            cardText.textContent = card.description;
+            const cardText = new ParagraphElement({
+                className: 'card-text',
+                text: card.description
+            });
             cardBody.addLastChild([
                 cardTitle.getDiv(),
-                cardText
+                cardText.getParagraph()
             ]);
             productCard.addLastChild([cardBody.getDiv()]);
             cardContainer.addLastChild([productCard.getDiv()]);
