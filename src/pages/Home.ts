@@ -14,7 +14,7 @@ import { Shipping }         from '../components/container/Shipping.js';
 import { PayMethod }        from '../components/container/PayMethod.js';
 
 export function Home(): HTMLDivElement {
-    const container = new DivElement({id: 'main_container'});
+    const container = new DivElement({ id: 'main_container' });
     
     container.addFirstChild([
         new Navbar        (arrContainers[0]!.id, arrContainers[0]!.className).getContainer(),
