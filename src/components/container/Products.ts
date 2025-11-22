@@ -10,6 +10,7 @@ import { createTitle }      from '../../utils/createTitle.js';
 
 import { iArrProduct }      from '../../interfaces/iArrProduct.js';
 import { iProductCard }     from '../../interfaces/iProductCard.js';
+import { ParagraphElement } from '../elements/Paragraph.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -116,20 +117,21 @@ export class Products extends Container{
 
             productCard.addLastChild([carousel.getDiv()]);
 
-            const cardBody          = new DivElement({className: 'card-body'});
+            const cardBody  = new DivElement({className: 'card-body'});
             
-            const cardTitle         = new DivElement({
+            const cardTitle = new DivElement({
                 className   : 'card-title', 
                 text        : card.title
             });
             
-            const cardText          = document.createElement('p');
-            cardText.className      = 'card-text';
-            cardText.textContent    = card.description;
+            const cardText  = new ParagraphElement({
+                className   : 'card-text',
+                text        : card.description
+            });
 
             cardBody.addLastChild([
                 cardTitle.getDiv(),
-                cardText
+                cardText.getParagraph()
             ]);
 
             productCard.addLastChild([cardBody.getDiv()]);
