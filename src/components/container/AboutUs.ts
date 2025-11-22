@@ -1,14 +1,15 @@
-import { Container }    from '../Container.js';
-import { DivElement }   from '../elements/Div.js';
-import { ImgElement }   from '../elements/Img.js';
-import { HeadingElement } from '../elements/Heading.js';
-import { createTitle }  from '../../utils/createTitle.js';
+import { Container }        from '../Container.js';
+import { DivElement }       from '../elements/Div.js';
+import { ImgElement }       from '../elements/Img.js';
+import { HeadingElement }   from '../elements/Heading.js';
+import { ParagraphElement } from '../elements/Paragraph.js';
+
+import { createTitle }      from '../../utils/createTitle.js';
 
 import { 
     globalInfo, 
     imagesPath 
 } from '../../utils/constants.js';
-import { ParagraphElement } from '../elements/Paragraph.js';
 
 
 

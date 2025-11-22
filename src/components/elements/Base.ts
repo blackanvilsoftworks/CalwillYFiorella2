@@ -156,18 +156,7 @@ readonly - Solo lectura
 
 
 
-Anchor
-href - URL de destino
 
-target="_blank|_self|_parent|_top"
-
-rel="noopener|noreferrer|nofollow"
-
-download - Descarga el recurso
-
-hreflang - Idioma del recurso
-
-type - Tipo MIME del recurso
 
 
 */

@@ -1,0 +1,1 @@
+export type tAnchorRelTypes = 'noopener' | 'noreferrer' | 'nofollow';
