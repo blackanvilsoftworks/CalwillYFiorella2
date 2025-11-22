@@ -3,6 +3,7 @@ import { ImgElement } from '../elements/Img.js';
 import { ButtonElement } from '../elements/Button.js';
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
+import { AnchorElement } from '../elements/Anchor.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -29,9 +30,10 @@ export class Navbar {
     createHTML() {
         var _a;
         const div1 = new DivElement({ className: 'container-fluid' });
-        const a = document.createElement('a');
-        a.className = 'navbar-brand';
-        a.href = `#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}`;
+        const a = new AnchorElement({
+            className: 'navbar-brand',
+            href: `#${(_a = arrContainers[1]) === null || _a === void 0 ? void 0 : _a.id}`
+        });
         const img = new ImgElement({
             className: 'd-inline-block align-text-top me-2',
             src: './assets/navbar-logo.png',
@@ -41,9 +43,9 @@ export class Navbar {
         const span = document.createElement('span');
         span.className = 'ms-2 navbar-title';
         span.textContent = globalInfo.name.toUpperCase();
-        a.appendChild(img.getImg());
-        a.appendChild(span);
-        div1.addLastChild([a]);
+        a.addLastChild([img.getImg()]);
+        a.addLastChild([span]);
+        div1.addLastChild([a.getAnchor()]);
         const button = new ButtonElement({
             className: 'navbar-toggler border-0',
             type: 'button',
@@ -76,11 +78,12 @@ export class Navbar {
             if (item.navbar) {
                 const li = document.createElement('li');
                 li.className = 'nav-item';
-                const a = document.createElement('a');
-                a.className = 'nav-link';
-                a.href = `#${item.id}`;
-                a.textContent = item.navbar;
-                li.appendChild(a);
+                const a = new AnchorElement({
+                    className: 'nav-link',
+                    href: `#${item.id}`,
+                    text: item.navbar
+                });
+                li.appendChild(a.getAnchor());
                 return li.outerHTML;
             }
         }).join('');

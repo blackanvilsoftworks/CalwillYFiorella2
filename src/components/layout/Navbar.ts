@@ -4,6 +4,7 @@ import { ButtonElement }    from '../elements/Button.js';
 import { globalInfo }       from '../../utils/constants.js';
 import { arrContainers }    from '../../utils/arrays.js';
 import { iArrContainer }    from '../../interfaces/iArrContainer.js';
+import { AnchorElement } from '../elements/Anchor.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -33,13 +34,14 @@ export class Navbar {
     }
     
     private createHTML (): string {
-        const div1      = new DivElement({className : 'container-fluid'});
+        const div1  = new DivElement({className : 'container-fluid'});
 
-        const a     = document.createElement('a');
-        a.className = 'navbar-brand';
-        a.href      = `#${arrContainers[1]?.id}`;
+        const a     = new AnchorElement({
+            className   : 'navbar-brand',
+            href        : `#${arrContainers[1]?.id}`
+        });
 
-        const img       = new ImgElement({
+        const img   = new ImgElement({
             className   : 'd-inline-block align-text-top me-2',
             src         : './assets/navbar-logo.png',
             alt         : `${globalInfo.name} Logo`,
@@ -50,9 +52,9 @@ export class Navbar {
         span.className   = 'ms-2 navbar-title';
         span.textContent = globalInfo.name.toUpperCase();
 
-        a.appendChild(img.getImg());
-        a.appendChild(span);
-        div1.addLastChild([a]);
+        a.addLastChild([img.getImg()]);
+        a.addLastChild([span]);
+        div1.addLastChild([a.getAnchor()]);
 
         const button = new ButtonElement({
             className       : 'navbar-toggler border-0',
@@ -92,12 +94,13 @@ export class Navbar {
                 const li        = document.createElement('li');
                 li.className    = 'nav-item';
 
-                const a        = document.createElement('a');
-                a.className    = 'nav-link';
-                a.href         = `#${item.id}`;
-                a.textContent  = item.navbar;
-
-                li.appendChild(a);
+                const a        = new AnchorElement({
+                    className   : 'nav-link',
+                    href        : `#${item.id}`,
+                    text        : item.navbar
+                });
+                
+                li.appendChild(a.getAnchor());
                 return li.outerHTML;
             }
         }).join('');
