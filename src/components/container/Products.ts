@@ -13,6 +13,7 @@ import { iProductCard }     from '../../interfaces/iProductCard.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
 import { ListItemElement } from '../elements/ListItem.js';
+import { SpanElement } from '../elements/Span.js';
 
 export class Products extends Container{
     constructor (id: string, className: string, title: string, icon: string) {
@@ -182,7 +183,10 @@ export class Products extends Container{
             }],
         });
         
-        const span1             = document.createElement('span');
+        const span1             = new SpanElement({
+            className: `carousel-control-${prevOrNext}-icon`,
+            ariaAttributes: [{hidden: 'true'}]
+        });
         span1.className         = `carousel-control-${prevOrNext}-icon`;
         span1.setAttribute('aria-hidden', 'true');
 

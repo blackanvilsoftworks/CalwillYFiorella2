@@ -4,4 +4,5 @@ export interface iAriaAttributes {
     expanded?   : string;
     selected?   : string;
     rol?        : string;
+    hidden?     : string;
 }

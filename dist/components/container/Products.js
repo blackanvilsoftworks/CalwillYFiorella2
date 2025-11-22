@@ -9,6 +9,7 @@ import { createTitle } from '../../utils/createTitle.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
 import { ListItemElement } from '../elements/ListItem.js';
+import { SpanElement } from '../elements/Span.js';
 export class Products extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -140,7 +141,10 @@ export class Products extends Container {
                     slide: prevOrNext,
                 }],
         });
-        const span1 = document.createElement('span');
+        const span1 = new SpanElement({
+            className: `carousel-control-${prevOrNext}-icon`,
+            ariaAttributes: [{ hidden: 'true' }]
+        });
         span1.className = `carousel-control-${prevOrNext}-icon`;
         span1.setAttribute('aria-hidden', 'true');
         const span2 = document.createElement('span');
