@@ -26,7 +26,7 @@ export class ContactForm extends Container {
         });
         contactForm.addLastChild([this.createContactForm()]);
 
-        const contactInfoCard = new DivElement({className: 'row mt-3'});
+        const contactInfoCard = new DivElement({ className: 'row mt-3' });
         contactInfoCard.addLastChild([this.createContactInfoCard()]);
 
         const html = `
@@ -68,7 +68,7 @@ export class ContactForm extends Container {
         form.append(input3);
         form.append(input4);
 
-        const div1 = new DivElement({className: 'col-12 col-md-6 mb-3 px-1'});
+        const div1 = new DivElement({ className: 'col-12 col-md-6 mb-3 px-1' });
         
         const label1            = document.createElement('label');
         label1.htmlFor          = 'name';
@@ -88,7 +88,7 @@ export class ContactForm extends Container {
             inputName
         ]);
         
-        const div2 = new DivElement({className: 'col-12 col-md-6 mb-3 px-1'});
+        const div2 = new DivElement({ className: 'col-12 col-md-6 mb-3 px-1' });
         
         const label2            = document.createElement('label');
         label2.htmlFor          = 'phone-number';
@@ -108,7 +108,7 @@ export class ContactForm extends Container {
             inputPhone
         ]);
 
-        const div3 = new DivElement({className: 'col-12 mb-3'});
+        const div3 = new DivElement({ className: 'col-12 mb-3' });
 
         const label3            = document.createElement('label');
         label3.htmlFor          = 'message';
@@ -142,11 +142,11 @@ export class ContactForm extends Container {
     }
 
     private createContactInfoCard (): HTMLDivElement {
-        const contactInfoCard   = new DivElement({className: 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto'});
+        const contactInfoCard   = new DivElement({ className: 'col-12 col-sm-10 col-md-8 col-lg-6 col-xxl-6 ms-auto' });
 
-        const cardHeader        = new DivElement({className: 'card h-100'});
+        const cardHeader        = new DivElement({ className: 'card h-100' });
         
-        const cardBody          = new DivElement({className: 'card-body'});
+        const cardBody          = new DivElement({ className: 'card-body' });
         
         const cardTitle         = new HeadingElement({
             type        : 'h5',
@@ -154,7 +154,7 @@ export class ContactForm extends Container {
             text        : 'Información de Contacto'
         });
 
-        const container         = new DivElement({className: 'container'});
+        const container         = new DivElement({ className: 'container' });
         container.addLastChild(this.createContactInfoCardItems(), 'innerHTML');
 
         cardBody.addLastChild([
@@ -169,12 +169,11 @@ export class ContactForm extends Container {
 
     private createContactInfoCardItems (): string {
         return arrInfoCardContent.map(item => {
-            const container = new DivElement({className: 'row mb-2'});
+            const container = new DivElement({ className: 'row mb-2' });
             
-            const iconDiv   = new DivElement({className: 'col-1'});
+            const iconDiv   = new DivElement({ className: 'col-1' });
             
-            const icon      = new IconElement({className: item.icon});
-
+            const icon      = new IconElement({ className: item.icon });
             iconDiv.addLastChild([icon.getIcon()]);
 
             const infoDiv   = new DivElement({
