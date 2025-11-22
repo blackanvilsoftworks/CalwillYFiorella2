@@ -10,4 +10,3 @@ export interface iAnchorElement extends iBaseElement {
     hreflang?   : string;
     type?       : string;
 }
-
