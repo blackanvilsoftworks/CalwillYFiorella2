@@ -8,6 +8,7 @@ import { arrProducts } from '../../utils/arrays.js';
 import { createTitle } from '../../utils/createTitle.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
+import { ListItemElement } from '../elements/ListItem.js';
 export class Products extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
@@ -38,9 +39,10 @@ export class Products extends Container {
             role: 'tablist'
         });
         arrProducts.forEach((product, i) => {
-            const li = document.createElement('li');
-            li.className = 'nav-item';
-            li.role = 'presentation';
+            const li = new ListItemElement({
+                role: 'presentation',
+                className: 'nav-item'
+            });
             const button = new ButtonElement({
                 id: `${product.id}-tab`,
                 text: product.title,
@@ -54,8 +56,8 @@ export class Products extends Container {
                     }]
                 // aria_controls: product.id
             });
-            li.appendChild(button.getButton());
-            productsNavUL.addLastChild([li]);
+            li.addLastChild([button.getButton()]);
+            productsNavUL.addLastChild([li.getListItem()]);
         });
         return productsNavUL.getUnorderedList();
     }
