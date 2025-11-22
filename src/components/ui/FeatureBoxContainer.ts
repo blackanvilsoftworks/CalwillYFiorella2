@@ -1,4 +1,4 @@
-import {  Container }       from '../Container.js';
+import { Container }        from '../Container.js';
 import { DivElement }       from '../elements/Div.js';
 import { HeadingElement }   from '../elements/Heading.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
