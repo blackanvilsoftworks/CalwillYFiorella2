@@ -2,6 +2,7 @@ import { DivElement }       from '../elements/Div.js';
 import { ButtonElement }    from '../elements/Button.js';
 import { arrSocialMedia }   from '../../utils/arrays.js';
 import { HeadingElement } from '../elements/Heading.js';
+import { ParagraphElement } from '../elements/Paragraph.js';
 
 export class Footer {
     private container: HTMLElement;
@@ -38,7 +39,7 @@ export class Footer {
         const div3_1    = new DivElement({className: 'row'});
         div3_1.addLastChild(this.createSocialMediaButton(), 'innerHTML');
 
-        const hr        = document.createElement('hr');
+        const hr        = new HTMLHRElement();
 
         const div3_2    = new DivElement({className: 'row'});
         const div3_2_1  = new DivElement({className: 'col-12'});
@@ -48,12 +49,13 @@ export class Footer {
             text        : 'Calwill & Fiorella'
         });
         
-        const p         = document.createElement('p');
-        p.textContent   = 'Distribuidores de calzado infantil y calzado para adultos. Comodidad y estilo para toda la familia.';
-
+        const p         = new ParagraphElement({
+            text: 'Distribuidores de calzado infantil y calzado para adultos. Comodidad y estilo para toda la familia.'
+        });
+        
         div3_2_1.addLastChild([
             h5.getHeading(),
-            p
+            p.getParagraph()
         ]);
         div3_2.addLastChild([div3_2_1.getDiv()]);
 
