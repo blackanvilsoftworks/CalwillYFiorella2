@@ -4,6 +4,7 @@ import { ButtonElement } from '../elements/Button.js';
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
 import { AnchorElement } from '../elements/Anchor.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -72,9 +73,10 @@ export class Navbar {
         return div1.getDiv().outerHTML;
     }
     createNavbarItems() {
-        const ul = document.createElement('ul');
-        ul.className = 'navbar-nav ms-auto';
-        ul.innerHTML = arrContainers.map((item) => {
+        const ul = new UnorderedListElement({
+            className: 'navbar-nav ms-auto',
+        });
+        arrContainers.forEach((item) => {
             if (item.navbar) {
                 const li = document.createElement('li');
                 li.className = 'nav-item';
@@ -84,10 +86,10 @@ export class Navbar {
                     text: item.navbar
                 });
                 li.appendChild(a.getAnchor());
-                return li.outerHTML;
+                ul.addLastChild([li]);
             }
-        }).join('');
-        return ul;
+        });
+        return ul.getUnorderedList();
     }
 }
 //# sourceMappingURL=Navbar.js.map

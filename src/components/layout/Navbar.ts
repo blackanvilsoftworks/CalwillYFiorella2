@@ -5,6 +5,7 @@ import { globalInfo }       from '../../utils/constants.js';
 import { arrContainers }    from '../../utils/arrays.js';
 import { iArrContainer }    from '../../interfaces/iArrContainer.js';
 import { AnchorElement } from '../elements/Anchor.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -87,9 +88,11 @@ export class Navbar {
     }
 
     private createNavbarItems (): HTMLUListElement {
-        const ul        = document.createElement('ul');
-        ul.className    = 'navbar-nav ms-auto';
-        ul.innerHTML    = arrContainers.map((item: iArrContainer) => {
+        const ul        = new UnorderedListElement({
+            className   : 'navbar-nav ms-auto',
+        });
+        
+        arrContainers.forEach((item: iArrContainer) => {
             if (item.navbar){
                 const li        = document.createElement('li');
                 li.className    = 'nav-item';
@@ -101,9 +104,9 @@ export class Navbar {
                 });
                 
                 li.appendChild(a.getAnchor());
-                return li.outerHTML;
+                ul.addLastChild([li]);
             }
-        }).join('');
-        return ul;
+        });
+        return ul.getUnorderedList();
     }
 }
