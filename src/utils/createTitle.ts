@@ -1,12 +1,12 @@
+import { SpanElement } from "../components/elements/Span";
+
 export const createTitle = (title: string, icon: string): HTMLSpanElement => {
-    const titleSpan         = document.createElement('span');
-    titleSpan.className     = 'title';
-    titleSpan.textContent   = `${title} `;
+    const titleSpan = new SpanElement({ className: 'title', text: `${title} ` });
 
     const iconElement       = document.createElement('i');
     iconElement.className   = icon;
 
-    titleSpan.appendChild(iconElement);
+    titleSpan.addLastChild([iconElement]);
     
-    return titleSpan;
+    return titleSpan.getSpan();
 };

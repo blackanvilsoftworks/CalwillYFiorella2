@@ -7,6 +7,7 @@ import { iArrContainer }    from '../../interfaces/iArrContainer.js';
 import { AnchorElement } from '../elements/Anchor.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
 import { ListItemElement } from '../elements/ListItem.js';
+import { SpanElement } from '../elements/Span.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -50,12 +51,13 @@ export class Navbar {
             height      : 40
         });
 
-        const span       = document.createElement('span');
-        span.className   = 'ms-2 navbar-title';
-        span.textContent = globalInfo.name.toUpperCase();
+        const span  = new SpanElement({
+            className   : 'ms-2 navbar-title',
+            text        : globalInfo.name.toUpperCase()
+        });
 
         a.addLastChild([img.getImg()]);
-        a.addLastChild([span]);
+        a.addLastChild([span.getSpan()]);
         div1.addLastChild([a.getAnchor()]);
 
         const button = new ButtonElement({
@@ -72,13 +74,12 @@ export class Navbar {
             }]
         });
 
-        const spanIcon      = document.createElement('span');
-        spanIcon.className  = 'navbar-toggler-icon';
-
-        button.addLastChild([spanIcon]);
+        const spanIcon = new SpanElement({ className   : 'navbar-toggler-icon' });
+        
+        button.addLastChild([spanIcon.getSpan()]);
         div1.addLastChild([button.getButton()]);
 
-        const div2      = new DivElement({
+        const div2 = new DivElement({
             id          : 'navbarNav',
             className   : 'collapse navbar-collapse text-center ps-auto'
         });
@@ -89,17 +90,17 @@ export class Navbar {
     }
 
     private createNavbarItems (): HTMLUListElement {
-        const ul        = new UnorderedListElement({
+        const ul = new UnorderedListElement({
             className   : 'navbar-nav ms-auto',
         });
         
         arrContainers.forEach((item: iArrContainer) => {
             if (item.navbar){
-                const li    = new ListItemElement({
+                const li = new ListItemElement({
                     className: `nav-item`,
                 });
 
-                const a     = new AnchorElement({
+                const a = new AnchorElement({
                     className   : 'nav-link',
                     href        : `#${item.id}`,
                     text        : item.navbar
