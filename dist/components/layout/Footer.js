@@ -32,7 +32,7 @@ export class Footer {
         const div3 = new DivElement({ className: 'col-12 col-md-8' });
         const div3_1 = new DivElement({ className: 'row' });
         div3_1.addLastChild(this.createSocialMediaButton(), 'innerHTML');
-        const hr = new HTMLHRElement();
+        const hr = document.createElement('hr');
         const div3_2 = new DivElement({ className: 'row' });
         const div3_2_1 = new DivElement({ className: 'col-12' });
         const h5 = new HeadingElement({
