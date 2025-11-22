@@ -1,6 +1,7 @@
 import { Container } from '../Container.js';
 import { DivElement } from '../elements/Div.js';
 import { HeadingElement } from '../elements/Heading.js';
+import { IconElement } from '../elements/Icon.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
 export class FeatureBoxContainer extends Container {
     constructor(icon, title, description) {
@@ -10,9 +11,8 @@ export class FeatureBoxContainer extends Container {
     createHTML(icon, title, description) {
         const div1 = new DivElement({ className: 'feature-box' });
         const div2 = new DivElement({ className: 'feature-icon' });
-        const iElement = document.createElement('i');
-        iElement.className = icon;
-        div2.addLastChild([iElement]);
+        const iElement = new IconElement({ className: icon });
+        div2.addLastChild([iElement.getIcon()]);
         const h3 = new HeadingElement({
             type: 'h3',
             text: title
