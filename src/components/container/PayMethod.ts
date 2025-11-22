@@ -4,6 +4,7 @@ import { ParagraphElement } from '../elements/Paragraph.js';
 
 import { createTitle }      from '../../utils/createTitle.js';
 import { arrPayMethods }    from '../../utils/arrays.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 
 export class PayMethod extends Container{
     
@@ -31,13 +32,16 @@ export class PayMethod extends Container{
     }
 
     private createPayMethodsList (): HTMLUListElement {
-        const ul        = document.createElement('ul');
-        ul.className    = 'list-unstyled';
-        ul.innerHTML    = arrPayMethods.map(method => {
+        const ul = new UnorderedListElement({
+            className: 'list-unstyled'
+        });
+        
+        arrPayMethods.forEach(method => {
             const li        = document.createElement('li');
             li.textContent  = `- ${method}`;
-            return li.outerHTML;
-        }).join('');
-        return ul;
+            ul.addLastChild([li]);
+        });
+
+        return ul.getUnorderedList();
     }
 }
