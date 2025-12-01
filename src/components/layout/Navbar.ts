@@ -1,13 +1,14 @@
-import { DivElement }       from '../elements/Div.js';
-import { ImgElement }       from '../elements/Img.js';
-import { ButtonElement }    from '../elements/Button.js';
-import { globalInfo }       from '../../utils/constants.js';
-import { arrContainers }    from '../../utils/arrays.js';
-import { iArrContainer }    from '../../interfaces/iArrContainer.js';
-import { AnchorElement } from '../elements/Anchor.js';
+import { DivElement }           from '../elements/Div.js';
+import { ImgElement }           from '../elements/Img.js';
+import { SpanElement }          from '../elements/Span.js';
+import { AnchorElement }        from '../elements/Anchor.js';
+import { ButtonElement }        from '../elements/Button.js';
+import { ListItemElement }      from '../elements/ListItem.js';
 import { UnorderedListElement } from '../elements/UnorderedList.js';
-import { ListItemElement } from '../elements/ListItem.js';
-import { SpanElement } from '../elements/Span.js';
+
+import { globalInfo }           from '../../utils/constants.js';
+import { arrContainers }        from '../../utils/arrays.js';
+import { iArrContainer }        from '../../interfaces/iArrContainer.js';
 
 export class Navbar {
     private container: HTMLElement;
@@ -94,16 +95,16 @@ export class Navbar {
             className   : 'navbar-nav ms-auto',
         });
         
-        arrContainers.forEach((item: iArrContainer) => {
-            if (item.navbar){
+        arrContainers.map(({navbar, id}: iArrContainer) => {
+            if (navbar){
                 const li = new ListItemElement({
                     className: `nav-item`,
                 });
 
                 const a = new AnchorElement({
                     className   : 'nav-link',
-                    href        : `#${item.id}`,
-                    text        : item.navbar
+                    href        : `#${id}`,
+                    text        : navbar
                 });
                 
                 li.addLastChild([a.getAnchor()]);

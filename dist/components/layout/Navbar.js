@@ -1,12 +1,12 @@
 import { DivElement } from '../elements/Div.js';
 import { ImgElement } from '../elements/Img.js';
+import { SpanElement } from '../elements/Span.js';
+import { AnchorElement } from '../elements/Anchor.js';
 import { ButtonElement } from '../elements/Button.js';
+import { ListItemElement } from '../elements/ListItem.js';
+import { UnorderedListElement } from '../elements/UnorderedList.js';
 import { globalInfo } from '../../utils/constants.js';
 import { arrContainers } from '../../utils/arrays.js';
-import { AnchorElement } from '../elements/Anchor.js';
-import { UnorderedListElement } from '../elements/UnorderedList.js';
-import { ListItemElement } from '../elements/ListItem.js';
-import { SpanElement } from '../elements/Span.js';
 export class Navbar {
     constructor(id, className) {
         this.container = this.createElement(id, className);
@@ -78,15 +78,15 @@ export class Navbar {
         const ul = new UnorderedListElement({
             className: 'navbar-nav ms-auto',
         });
-        arrContainers.forEach((item) => {
-            if (item.navbar) {
+        arrContainers.map(({ navbar, id }) => {
+            if (navbar) {
                 const li = new ListItemElement({
                     className: `nav-item`,
                 });
                 const a = new AnchorElement({
                     className: 'nav-link',
-                    href: `#${item.id}`,
-                    text: item.navbar
+                    href: `#${id}`,
+                    text: navbar
                 });
                 li.addLastChild([a.getAnchor()]);
                 ul.addLastChild([li.getListItem()]);
