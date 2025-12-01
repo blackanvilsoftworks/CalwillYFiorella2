@@ -63,10 +63,11 @@ export class Footer {
             const button = new ButtonElement({
                 id: `btn_${name}`,
                 className: `btn btn-outline-${color} w-100`,
-                text: ` ${name.charAt(0).toUpperCase() + name.slice(1)}`
+                // text        : ` ${name.charAt(0).toUpperCase() + name.slice(1)}`
             });
             const iconEl = new IconElement({ className: icon });
             button.addLastChild([iconEl.getIcon()]);
+            button.addLastChild(` ${name.charAt(0).toUpperCase() + name.slice(1)}`);
             div.addLastChild([button.getButton()]);
             return div.getDiv().outerHTML;
         }).join('');
