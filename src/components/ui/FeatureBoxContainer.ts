@@ -1,7 +1,7 @@
 import { Container }        from '../Container.js';
 import { DivElement }       from '../elements/Div.js';
+import { IconElement }      from '../elements/Icon.js';
 import { HeadingElement }   from '../elements/Heading.js';
-import { IconElement } from '../elements/Icon.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
 
 export class FeatureBoxContainer extends Container {

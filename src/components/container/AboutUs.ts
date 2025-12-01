@@ -21,11 +21,11 @@ export class AboutUs extends Container{
     }
 
     private createHTML (title: string, icon: string): void {
-        const div1 = new DivElement({className: 'row justify-content-center'});
+        const div1 = new DivElement({ className: 'row justify-content-center' });
 
-        const div2 = new DivElement({className: 'col-10'});
+        const div2 = new DivElement({ className: 'col-10' });
 
-        const div3 = new DivElement({className: 'row'});
+        const div3 = new DivElement({ className: 'row' });
 
         const h2   = new HeadingElement({
             type        : 'h2',

@@ -1,5 +1,5 @@
-import { IconElement } from "../components/elements/Icon";
-import { SpanElement } from "../components/elements/Span";
+import { IconElement } from "../components/elements/Icon.js";
+import { SpanElement } from "../components/elements/Span.js";
 
 export const createTitle = (title: string, icon: string): HTMLSpanElement => {
     const titleSpan     = new SpanElement({ className: 'title', text: `${title} ` });

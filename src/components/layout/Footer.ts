@@ -1,9 +1,10 @@
 import { DivElement }       from '../elements/Div.js';
+import { IconElement }      from '../elements/Icon.js';
 import { ButtonElement }    from '../elements/Button.js';
-import { arrSocialMedia }   from '../../utils/arrays.js';
-import { HeadingElement } from '../elements/Heading.js';
+import { HeadingElement }   from '../elements/Heading.js';
 import { ParagraphElement } from '../elements/Paragraph.js';
-import { IconElement } from '../elements/Icon.js';
+
+import { arrSocialMedia }   from '../../utils/arrays.js';
 
 export class Footer {
     private container: HTMLElement;
