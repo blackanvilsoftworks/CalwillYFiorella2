@@ -17,11 +17,11 @@ export class Feature extends Container {
     }
 
     private getFeatureBoxes (): void {
-        this.featureBoxes = arrFeatures.map((feature) => {
+        this.featureBoxes = arrFeatures.map(({icon, title, description}) => {
             return new FeatureBoxContainer(
-                feature.icon, 
-                feature.title, 
-                feature.description).getContainer();
+                icon, 
+                title, 
+                description).getContainer();
         });
     }
 
@@ -40,7 +40,7 @@ export class Feature extends Container {
         
         div3.addLastChild([h2.getHeading()]);
 
-        this.featureBoxes.forEach(box => {
+        this.featureBoxes.map((box) => {
             div3.addLastChild([box]);
         });
 

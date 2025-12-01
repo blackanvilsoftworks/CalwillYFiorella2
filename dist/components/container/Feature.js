@@ -12,8 +12,8 @@ export class Feature extends Container {
         this.createHTML(title, icon);
     }
     getFeatureBoxes() {
-        this.featureBoxes = arrFeatures.map((feature) => {
-            return new FeatureBoxContainer(feature.icon, feature.title, feature.description).getContainer();
+        this.featureBoxes = arrFeatures.map(({ icon, title, description }) => {
+            return new FeatureBoxContainer(icon, title, description).getContainer();
         });
     }
     createHTML(title, icon) {
@@ -26,7 +26,7 @@ export class Feature extends Container {
         });
         h2.addFirstChild([createTitle(title, icon)]);
         div3.addLastChild([h2.getHeading()]);
-        this.featureBoxes.forEach(box => {
+        this.featureBoxes.map((box) => {
             div3.addLastChild([box]);
         });
         div2.addLastChild([div3.getDiv()]);
