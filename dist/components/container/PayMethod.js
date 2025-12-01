@@ -22,7 +22,7 @@ export class PayMethod extends Container {
     }
     createPayMethodsList() {
         const ul = new UnorderedListElement({ className: 'list-unstyled' });
-        arrPayMethods.forEach(method => {
+        arrPayMethods.map((method) => {
             const li = new ListItemElement({ text: `- ${method}` });
             ul.addLastChild([li.getListItem()]);
         });
