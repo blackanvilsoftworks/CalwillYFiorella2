@@ -58,15 +58,15 @@ export class Footer {
         return div1.getDiv();
     }
     createSocialMediaButton() {
-        return arrSocialMedia.map(media => {
+        return arrSocialMedia.map(({ name, color, icon }) => {
             const div = new DivElement({ className: 'col-12 col-sm-6 mb-3' });
             const button = new ButtonElement({
-                id: `btn_${media.name}`,
-                className: `btn btn-outline-${media.color} w-100`,
-                text: ` ${media.name.charAt(0).toUpperCase() + media.name.slice(1)}`
+                id: `btn_${name}`,
+                className: `btn btn-outline-${color} w-100`,
+                text: ` ${name.charAt(0).toUpperCase() + name.slice(1)}`
             });
-            const icon = new IconElement({ className: media.icon });
-            button.addLastChild([icon.getIcon()]);
+            const iconEl = new IconElement({ className: icon });
+            button.addLastChild([iconEl.getIcon()]);
             div.addLastChild([button.getButton()]);
             return div.getDiv().outerHTML;
         }).join('');
