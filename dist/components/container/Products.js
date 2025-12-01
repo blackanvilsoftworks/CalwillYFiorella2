@@ -13,9 +13,11 @@ import { createTitle } from '../../utils/createTitle.js';
 export class Products extends Container {
     constructor(id, className, title, icon) {
         super(id, className);
-        this.createHTML(title, icon);
+        this.title = title;
+        this.icon = icon;
+        this.createHTML();
     }
-    createHTML(title, icon) {
+    createHTML() {
         const div1 = new DivElement({ className: 'row justify-content-center' });
         const div2 = new DivElement({ className: 'col-10 col-lg-12 px-lg-5' });
         const div3 = new DivElement({ className: 'row' });
@@ -23,7 +25,7 @@ export class Products extends Container {
             type: 'h2',
             className: 'text-center',
         });
-        h2.addFirstChild([createTitle(title, icon)]);
+        h2.addFirstChild([createTitle(this.title, this.icon)]);
         div3.addLastChild([
             h2.getHeading(),
             this.createProductsNav(),
@@ -39,18 +41,18 @@ export class Products extends Container {
             className: 'nav nav-pills justify-content-center mb-4',
             role: 'tablist'
         });
-        arrProducts.forEach((product, i) => {
+        arrProducts.map(({ id, title }, i) => {
             const li = new ListItemElement({
                 role: 'presentation',
                 className: 'nav-item'
             });
             const button = new ButtonElement({
-                id: `${product.id}-tab`,
-                text: product.title,
+                id: `${id}-tab`,
+                text: title,
                 className: `nav-link btn-primary${i === 0 ? " active" : ""}`,
                 dataBsAttributes: [{
                         toggle: 'pill',
-                        target: `#${product.id}`,
+                        target: `#${id}`,
                     }],
                 ariaAttributes: [{
                         selected: i === 0 ? "true" : "false",
@@ -68,7 +70,7 @@ export class Products extends Container {
             className: 'tab-content',
             ariaAttributes: [{ rol: 'tabpanel' }]
         });
-        arrProducts.forEach((product, i) => {
+        arrProducts.map((product, i) => {
             const div = new DivElement({
                 id: product.id,
                 className: `tab-pane fade show${i === 0 ? " active" : ""}`,
@@ -82,7 +84,8 @@ export class Products extends Container {
     }
     createCarousel(product, i) {
         const carouselContainer = new DivElement({ className: 'row' });
-        product.cards.forEach((card, j) => {
+        product.cards.map((card, j) => {
+            const { title, description } = card;
             const cardContainer = new DivElement({ className: 'col-12 col-md-6 col-lg-4' });
             const productCard = new DivElement({ className: 'card product-card' });
             const carousel = new DivElement({
@@ -99,11 +102,11 @@ export class Products extends Container {
             const cardBody = new DivElement({ className: 'card-body' });
             const cardTitle = new DivElement({
                 className: 'card-title',
-                text: card.title
+                text: title
             });
             const cardText = new ParagraphElement({
                 className: 'card-text',
-                text: card.description
+                text: description
             });
             cardBody.addLastChild([
                 cardTitle.getDiv(),
@@ -119,7 +122,7 @@ export class Products extends Container {
         const carouselImg = new DivElement({
             className: 'carousel-inner'
         });
-        card.carouselImages.forEach((_, k) => {
+        card.carouselImages.map((_, k) => {
             const div = new DivElement({
                 className: `carousel-item${k === 0 ? ' active' : ''}`
             });

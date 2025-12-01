@@ -16,12 +16,17 @@ import { iArrProduct }          from '../../interfaces/iArrProduct.js';
 import { iProductCard }         from '../../interfaces/iProductCard.js';
 
 export class Products extends Container{
+    private title   : string;
+    private icon    : string;
+
     constructor (id: string, className: string, title: string, icon: string) {
         super(id, className);
-        this.createHTML(title, icon);
+        this.title  = title;
+        this.icon   = icon;
+        this.createHTML();
     }
 
-    private createHTML (title: string, icon: string): void {
+    private createHTML (): void {
 
         const div1  = new DivElement({className: 'row justify-content-center'});
         
@@ -33,7 +38,7 @@ export class Products extends Container{
             type        : 'h2',
             className   : 'text-center',
         });
-        h2.addFirstChild([createTitle(title, icon)]);
+        h2.addFirstChild([createTitle(this.title, this.icon)]);
         
         div3.addLastChild([
             h2.getHeading(),
@@ -54,19 +59,19 @@ export class Products extends Container{
             role        : 'tablist'
         });
         
-        arrProducts.forEach((product, i) => {
+        arrProducts.map(({id, title}, i) => {
             const li = new ListItemElement({
                 role        : 'presentation',
                 className   : 'nav-item'
             });
             
             const button = new ButtonElement({
-                id              : `${product.id}-tab`,
-                text            : product.title,
+                id              : `${id}-tab`,
+                text            : title,
                 className       : `nav-link btn-primary${i === 0 ? " active" : ""}`,
                 dataBsAttributes: [{
                     toggle  : 'pill',
-                    target  : `#${product.id}`,
+                    target  : `#${id}`,
                 }],
                 ariaAttributes  : [{
                     selected: i === 0 ? "true" : "false",
@@ -88,7 +93,7 @@ export class Products extends Container{
             ariaAttributes  : [{rol: 'tabpanel'}]
         });
 
-        arrProducts.forEach((product, i) => {
+        arrProducts.map((product, i) => {
             const div = new DivElement({
                 id              : product.id,
                 className       : `tab-pane fade show${i === 0 ? " active" : ""}`,
@@ -104,7 +109,9 @@ export class Products extends Container{
     private createCarousel (product: iArrProduct, i: number): HTMLDivElement {
         const carouselContainer = new DivElement({className: 'row'});
 
-        product.cards.forEach((card, j) => {
+        product.cards.map((card, j) => {
+            const {title, description} = card;
+
             const cardContainer = new DivElement({className: 'col-12 col-md-6 col-lg-4'});
 
             const productCard   = new DivElement({className: 'card product-card'});
@@ -127,12 +134,12 @@ export class Products extends Container{
             
             const cardTitle = new DivElement({
                 className   : 'card-title', 
-                text        : card.title
+                text        : title
             });
             
             const cardText  = new ParagraphElement({
                 className   : 'card-text',
-                text        : card.description
+                text        : description
             });
 
             cardBody.addLastChild([
@@ -155,7 +162,7 @@ export class Products extends Container{
             className: 'carousel-inner'
         });
         
-        card.carouselImages.forEach((_, k) => {
+        card.carouselImages.map((_, k) => {
             const div = new DivElement({
                 className: `carousel-item${k === 0 ? ' active' : ''}`
             });
